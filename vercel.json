@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "name": "phl-underground",
+  "scope": "team_j2QZyjdv3FBnB59fa97Rr3Tb",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/public",
+  "framework": null,
+  "installCommand": "npm install"
+}
