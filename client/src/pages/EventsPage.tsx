@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { events, eventCategories, vibeOptions, type PhillyEvent } from "@/data/philly-data";
+import { events, eventCategories, vibeOptions, neighborhoods, type PhillyEvent } from "@/data/philly-data";
 import { EventCard } from "@/components/EventCard";
 import { EventDrawer } from "@/components/DetailDrawer";
 import { FilterChips, FilterToggle } from "@/components/FilterChips";
@@ -9,6 +9,7 @@ export function EventsPage() {
   const [selectedEvent, setSelectedEvent] = useState<PhillyEvent | null>(null);
   const [category, setCategory] = useState("All");
   const [vibe, setVibe] = useState("All");
+  const [neighborhood, setNeighborhood] = useState("All");
   const [insiderOnly, setInsiderOnly] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
 
@@ -16,10 +17,11 @@ export function EventsPage() {
     return events.filter((e) => {
       if (category !== "All" && e.category.toLowerCase() !== category.toLowerCase()) return false;
       if (vibe !== "All" && e.vibeTag !== vibe) return false;
+      if (neighborhood !== "All" && e.neighborhood !== neighborhood) return false;
       if (insiderOnly && !e.isInsider) return false;
       return true;
     });
-  }, [category, vibe, insiderOnly]);
+  }, [category, vibe, neighborhood, insiderOnly]);
 
   return (
     <div className="min-h-screen px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto" data-testid="page-events">
@@ -53,6 +55,10 @@ export function EventsPage() {
       {showFilters && (
         <div className="mb-5 p-4 rounded-xl bg-card border border-border/50 space-y-3 animate-fade-in" data-testid="filters-panel">
           <div>
+            <span className="text-xs font-medium text-muted-foreground mb-2 block">Neighborhood</span>
+            <FilterChips options={neighborhoods} selected={neighborhood} onChange={setNeighborhood} />
+          </div>
+          <div>
             <span className="text-xs font-medium text-muted-foreground mb-2 block">Vibe</span>
             <FilterChips options={vibeOptions} selected={vibe} onChange={setVibe} />
           </div>
@@ -67,7 +73,7 @@ export function EventsPage() {
         <div className="text-center py-16">
           <p className="text-muted-foreground text-sm">No events match your filters.</p>
           <button
-            onClick={() => { setCategory("All"); setVibe("All"); setInsiderOnly(false); }}
+            onClick={() => { setCategory("All"); setVibe("All"); setNeighborhood("All"); setInsiderOnly(false); }}
             className="mt-2 text-primary text-sm font-medium hover:underline"
           >
             Clear filters

@@ -1,3 +1,4 @@
+import React from "react";
 import { X, Calendar, MapPin, Clock, DollarSign, Star, ExternalLink, Ticket, Music } from "lucide-react";
 import type { PhillyEvent, HotSpot } from "@/data/philly-data";
 import { findTicketLink, findMusicLink, findRestaurantLink } from "@/data/philly-data";
@@ -28,22 +29,23 @@ const vibeBadgeColors: Record<string, string> = {
 };
 
 function DrawerShell({ onClose, children }: { onClose: () => void; children: React.ReactNode }) {
+  // Lock body scroll when drawer is open
+  React.useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, []);
+
   return (
     <div
-      className="fixed inset-0 z-[90] flex items-end justify-center"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
       data-testid="detail-drawer-backdrop"
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
 
-      {/* Drawer */}
-      <div className="relative w-full max-w-2xl max-h-[85vh] bg-card border-t border-x border-border rounded-t-2xl overflow-hidden animate-slide-up z-10">
-        {/* Handle */}
-        <div className="flex justify-center pt-3 pb-1">
-          <div className="w-10 h-1 rounded-full bg-border" />
-        </div>
-
+      {/* Modal */}
+      <div className="relative w-full max-w-lg max-h-[80vh] bg-card border border-border rounded-2xl overflow-hidden z-10 shadow-2xl shadow-black/50 animate-fade-in-up">
         {/* Close */}
         <button
           onClick={onClose}
@@ -54,7 +56,7 @@ function DrawerShell({ onClose, children }: { onClose: () => void; children: Rea
         </button>
 
         {/* Content */}
-        <div className="overflow-y-auto px-5 pb-8 pt-2" style={{ maxHeight: "calc(85vh - 48px)" }}>
+        <div className="overflow-y-auto px-5 pb-8 pt-5" style={{ maxHeight: "80vh" }}>
           {children}
         </div>
       </div>

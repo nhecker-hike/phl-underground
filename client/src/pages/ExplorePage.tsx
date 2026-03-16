@@ -153,7 +153,7 @@ export function ExplorePage() {
       {/* Influencer Picker */}
       <div className="px-4 sm:px-6 lg:px-8 pt-5 pb-2 max-w-7xl mx-auto">
         <div
-          className="flex items-start gap-3 sm:gap-4 overflow-x-auto pb-3 scrollbar-hide"
+          className="flex items-start gap-3 sm:gap-4 overflow-x-auto pb-3 pt-2 px-2 scrollbar-hide justify-center"
           data-testid="influencer-picker"
         >
           {/* All button */}
