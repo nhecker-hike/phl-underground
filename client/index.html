@@ -16,15 +16,37 @@
     <meta property="og:see_also" content="https://www.perplexity.ai/computer">
     <link rel="author" href="https://www.perplexity.ai/computer">
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
     <title>PHL Underground — Philadelphia's Insider City Guide</title>
     <meta name="description" content="Discover Philadelphia's best events, hot spots, and local influencers. Dark, moody, premium nightlife and culture guide.">
-    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <!-- PWA -->
+    <link rel="manifest" href="./manifest.json" />
+    <meta name="theme-color" content="#0f1116" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- iOS PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="PHL Underground" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="./icon-192.png" />
+
+    <!-- Fonts & Leaflet -->
     <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=general-sans@300,400,500,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js').catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>
