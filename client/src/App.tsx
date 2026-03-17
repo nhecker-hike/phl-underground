@@ -12,6 +12,7 @@ import { SportsPage } from "@/pages/SportsPage";
 import { InfluencersPage } from "@/pages/InfluencersPage";
 import { PerplexityAttribution } from "@/components/PerplexityAttribution";
 import NotFound from "@/pages/not-found";
+import { Analytics } from "@vercel/analytics/react";
 
 function AppRouter() {
   return (
@@ -47,6 +48,7 @@ function App() {
             </footer>
           </div>
         </Router>
+        <Analytics />
       </TooltipProvider>
     </QueryClientProvider>
   );
