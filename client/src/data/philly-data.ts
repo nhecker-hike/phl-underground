@@ -1580,6 +1580,41 @@ export const influencers: Influencer[] = [
       },
     ],
   },
+  {
+    id: "influencer-11",
+    name: "Visit Philly",
+    handle: "@visitphilly",
+    platform: "Instagram | TikTok | Facebook",
+    bio: "Philadelphia\'s official tourism marketing agency. The team behind visitphilly.com and uwishunu.com, running one of the most-followed city tourism accounts in the country. Covers events, new openings, cultural moments, and Philly 250 programming. Their 2026 tagline: \'America\'s 250th is Philly\'s biggest year yet.\'",
+    followers: "346K Instagram",
+    focus: "tourism | events | culture | food",
+    avatar: "./influencers/visitphilly.jpg",
+    recentPicks: [
+      { name: "Ministry of Awe", type: "event", neighborhood: "Old City", quote: "An abandoned 19th-century bank in Old City transformed into an immersive, 6-story work of art — just in time for Philly 250.", date: "March 14, 2026" },
+      { name: "Philly Pride Visitor Center", type: "spot", neighborhood: "Midtown Village", quote: "Now open: one of America\'s first dedicated LGBTQ+ visitor centers with souvenirs, attraction ticketing, and itinerary planning.", date: "February 25, 2026" },
+      { name: "52 Weeks of Firsts", type: "event", neighborhood: "Various", quote: "Honoring 250 years of Philly pioneering by celebrating the city\'s many historic achievements — every week, all throughout 2026.", date: "March 2026" },
+      { name: "A Nation of Artists", type: "event", neighborhood: "Center City", quote: "A cultural milestone celebrating the nation\'s creative legacy at the Philadelphia Museum of Art and PAFA, opening April 12.", date: "March 2026" },
+      { name: "Mural Arts Semiquincentennial Projects", type: "event", neighborhood: "Various", quote: "Mural Arts has a blockbuster lineup for 2026 including new murals celebrating Boyz II Men, Questlove, and more.", date: "March 2026" },
+      { name: "Old City Day Tour", type: "spot", neighborhood: "Old City", quote: "A day in Old City means history, culture, food, and plenty to explore — the best historical sites, cultural landmarks, and scenic views.", date: "March 11, 2026" },
+    ],
+  },
+  {
+    id: "influencer-12",
+    name: "Farah Stacy",
+    handle: "@farahstacy",
+    platform: "Instagram | TikTok",
+    bio: "Farah Farag (Farah Stacy) is a Philadelphia content creator and social media manager at Visit Philly. Also a host on Wooder Ice and co-founder of Charcuterie Chic Philly. Known for her organized-chaos lifestyle content covering food, travel, and Philly\'s best hidden gems. Salvadoran and Egyptian heritage.",
+    followers: "19K Instagram, 5.3K TikTok (1.3M likes)",
+    focus: "food | travel | lifestyle",
+    avatar: "./influencers/farahstacy.jpg",
+    recentPicks: [
+      { name: "Cilantro", type: "restaurant", neighborhood: "Philadelphia", quote: "Her go-to for kunafa, tabbouli, and beef shawarma wraps — highlighted as a Visit Philly foodie pick.", date: "March 2026" },
+      { name: "Fleur\'s", type: "restaurant", neighborhood: "Center City", quote: "Visit Philly\'s Winter Soiree venue — the cutest spot for restaurant week with amazing bacon wrapped scallops.", date: "December 2025" },
+      { name: "Elfreth\'s Alley Holiday Tour", type: "spot", neighborhood: "Old City", quote: "Spotlighted Elfreth\'s Alley as a must-visit beyond just Miracle on 13th Street during the holiday season.", date: "December 2025" },
+      { name: "Philly Michelin Stars 2025", type: "event", neighborhood: "Philadelphia", quote: "Congratulations to Philly — not to be played with when it comes to food! Covered the 2025 Michelin star announcements.", date: "November 2025" },
+      { name: "Charcuterie Chic Philly", type: "event", neighborhood: "Philadelphia", quote: "Co-founded Charcuterie Chic Philly — curated charcuterie experiences for events, pop-ups, and private gatherings.", date: "March 2026" },
+    ],
+  },
 ];
 
 // Category lists

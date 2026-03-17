@@ -90,7 +90,7 @@ export function InfluencerCard({ influencer }: Props) {
           </div>
         </div>
 
-        {/* Platform badges — centered */}
+        {/* Platform badges */}
         <div className="flex items-center justify-center gap-1.5 mt-4 flex-wrap">
           {platforms.map((p) => (
             <span
@@ -100,6 +100,10 @@ export function InfluencerCard({ influencer }: Props) {
               {p}
             </span>
           ))}
+        </div>
+
+        {/* Focus / content tags */}
+        <div className="flex items-center justify-center gap-1.5 mt-2 flex-wrap">
           {focusTags.map((tag) => (
             <span
               key={tag}

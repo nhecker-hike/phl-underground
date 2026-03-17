@@ -37,6 +37,8 @@ function getShortName(name: string): string {
     "Kory Aversa": "Kory",
     "Djour Philly": "Djour",
     "SwagFoodPhilly": "SwagFood",
+    "Visit Philly": "VisitPhilly",
+    "Farah Stacy": "Farah",
   };
   return map[clean] ?? clean.split(/\s/)[0];
 }
