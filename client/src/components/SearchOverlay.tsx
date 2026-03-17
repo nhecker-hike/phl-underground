@@ -25,7 +25,7 @@ export function SearchOverlay({ onClose }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex justify-center pt-[10vh] px-4"
+      className="fixed inset-0 z-[9999] bg-black/70 backdrop-blur-sm flex justify-center pt-[10vh] px-4"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
       data-testid="search-overlay"
     >

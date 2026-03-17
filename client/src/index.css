@@ -121,6 +121,8 @@
 /* Leaflet overrides for dark theme */
 .leaflet-container {
   background: hsl(220 15% 6%) !important;
+  z-index: 0 !important;
+  position: relative;
 }
 
 .leaflet-popup-content-wrapper {
