@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { MapView } from "@/components/MapView";
 import { EventCard } from "@/components/EventCard";
 import { SpotCard } from "@/components/SpotCard";
+import { InfluencerPickCard } from "@/components/InfluencerPickCard";
 import { EventDrawer, SpotDrawer } from "@/components/DetailDrawer";
 import { FilterChips } from "@/components/FilterChips";
 import {
@@ -11,8 +12,9 @@ import {
   type PhillyEvent,
   type HotSpot,
   type Influencer,
+  type InfluencerPick,
 } from "@/data/philly-data";
-import { Sparkles, TrendingUp } from "lucide-react";
+import { Sparkles, TrendingUp, Play, ExternalLink } from "lucide-react";
 import { EmailCapture } from "@/components/EmailCapture";
 
 const categories = ["All", "Events", "Food", "Nightlife", "Music", "Arts", "Outdoor", "Insider Picks"] as const;
@@ -46,20 +48,22 @@ function getShortName(name: string): string {
 /** Check if an influencer has posted in March 2026 (i.e. "recent") */
 function hasRecentPost(influencer: Influencer): boolean {
   return influencer.recentPicks.some((pick) => {
-    const d = pick.date.toLowerCase();
+    const d = String(pick.date || "").toLowerCase();
     return d.includes("march") && d.includes("2026");
   });
 }
 
 /** Match influencer picks against events and hotspots by name */
 function getInfluencerMatches(influencer: Influencer) {
-  const pickNames = influencer.recentPicks.map((p: { name: string }) => p.name.toLowerCase());
-  const matchedEvents = events.filter((e: PhillyEvent) =>
-    pickNames.some((pn: string) => e.name.toLowerCase().includes(pn) || pn.includes(e.name.toLowerCase()))
-  );
-  const matchedSpots = hotspots.filter((s: HotSpot) =>
-    pickNames.some((pn: string) => s.name.toLowerCase().includes(pn) || pn.includes(s.name.toLowerCase()))
-  );
+  const pickNames = influencer.recentPicks.map((p) => String(p.name || "").toLowerCase()).filter(Boolean);
+  const matchedEvents = events.filter((e) => {
+    const en = String(e.name || "").toLowerCase();
+    return pickNames.some((pn) => en.includes(pn) || pn.includes(en));
+  });
+  const matchedSpots = hotspots.filter((s) => {
+    const sn = String(s.name || "").toLowerCase();
+    return pickNames.some((pn) => sn.includes(pn) || pn.includes(sn));
+  });
   return { events: matchedEvents, spots: matchedSpots };
 }
 
@@ -84,22 +88,32 @@ export function ExplorePage() {
     return undefined;
   }, [influencerMatches]);
 
+  /** All picks for the selected influencer, sorted newest first */
+  const influencerPicks = useMemo(() => {
+    if (!selectedInfluencer) return [];
+    return [...selectedInfluencer.recentPicks].sort((a, b) => {
+      const months = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+      const getScore = (d: string | undefined) => {
+        const dl = String(d || "").toLowerCase();
+        if (dl.includes("2026")) {
+          const mi = months.findIndex((m) => dl.includes(m));
+          return mi >= 0 ? 2000 + mi * 30 : 1900;
+        }
+        if (dl.includes("2025")) {
+          const mi = months.findIndex((m) => dl.includes(m));
+          return mi >= 0 ? 1000 + mi * 30 : 900;
+        }
+        return 0;
+      };
+      return getScore(b.date) - getScore(a.date);
+    });
+  }, [selectedInfluencer]);
+
   const feedItems = useMemo(() => {
     let items: Array<{ type: "event"; data: PhillyEvent } | { type: "spot"; data: HotSpot }> = [];
 
-    if (selectedInfluencer && influencerMatches) {
-      const eItems = influencerMatches.events.map((e) => ({ type: "event" as const, data: e }));
-      const sItems = influencerMatches.spots.map((h) => ({ type: "spot" as const, data: h }));
-      const combined: typeof items = [];
-      const max = Math.max(eItems.length, sItems.length);
-      for (let i = 0; i < max; i++) {
-        if (eItems[i]) combined.push(eItems[i]);
-        if (sItems[i]) combined.push(sItems[i]);
-      }
-      return combined.length > 0 ? combined : [
-        ...events.slice(0, 4).map((e) => ({ type: "event" as const, data: e })),
-      ];
-    }
+    // If influencer selected, skip feed items — we'll show influencer picks instead
+    if (selectedInfluencer) return [];
 
     if (category === "All" || category === "Events") {
       items.push(...events.map((e) => ({ type: "event" as const, data: e })));
@@ -149,7 +163,12 @@ export function ExplorePage() {
     }
 
     return items;
-  }, [category, selectedInfluencer, influencerMatches]);
+  }, [category, selectedInfluencer]);
+
+  // Count picks that have a reel
+  const reelCount = selectedInfluencer
+    ? selectedInfluencer.recentPicks.filter((p) => p.reelUrl).length
+    : 0;
 
   return (
     <div className="min-h-screen" data-testid="page-explore">
@@ -265,43 +284,136 @@ export function ExplorePage() {
         />
       </div>
 
-      {/* What's Hot Feed — VERTICAL GRID, no horizontal scroll */}
-      <div className="px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto">
-        <div className="flex items-center gap-2 mb-4">
-          <TrendingUp size={18} className="text-primary" />
-          <h2 className="font-display font-bold text-lg text-foreground">
-            {selectedInfluencer ? `${selectedInfluencer.name}'s Picks` : "What's Hot Right Now"}
-          </h2>
-        </div>
+      {/* INFLUENCER TRACKER VIEW — shown when an influencer is selected */}
+      {selectedInfluencer && (
+        <div className="px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto">
+          {/* Influencer header */}
+          <div className="flex items-center gap-3 mb-2">
+            {selectedInfluencer.avatar ? (
+              <img
+                src={`${import.meta.env.BASE_URL}${selectedInfluencer.avatar.replace("./", "")}`}
+                alt={selectedInfluencer.name}
+                className="w-10 h-10 rounded-full object-cover border-2 border-primary/40"
+              />
+            ) : null}
+            <div>
+              <h2 className="font-display font-bold text-lg text-foreground">
+                {selectedInfluencer.name.replace(/\s*\(.*\)\s*/, "")}'s Tracker
+              </h2>
+              <p className="text-xs text-muted-foreground">
+                {selectedInfluencer.recentPicks.length} picks &middot; {selectedInfluencer.followers}
+              </p>
+            </div>
+          </div>
 
-        {/* Filter chips — hide when influencer is selected */}
-        {!selectedInfluencer && (
+          {/* Stats row */}
+          <div className="flex items-center gap-3 mb-5">
+            <span className="text-[11px] px-2.5 py-1 rounded-full bg-primary/10 text-primary font-medium">
+              {influencerPicks.filter((p) => p.date.toLowerCase().includes("march") && p.date.includes("2026")).length} this month
+            </span>
+            {reelCount > 0 && (
+              <span className="flex items-center gap-1 text-[11px] px-2.5 py-1 rounded-full bg-pink-500/10 text-pink-400 font-medium">
+                <Play size={10} className="fill-current" />
+                {reelCount} reel{reelCount !== 1 ? "s" : ""}
+              </span>
+            )}
+            <a
+              href={selectedInfluencer.socialLinks?.Instagram || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 text-[11px] px-2.5 py-1 rounded-full bg-white/5 text-muted-foreground hover:text-foreground font-medium transition-colors ml-auto"
+            >
+              Follow {selectedInfluencer.handle}
+              <ExternalLink size={10} />
+            </a>
+          </div>
+
+          {/* Matched events/spots from main arrays (clickable detail cards) */}
+          {influencerMatches && (influencerMatches.events.length > 0 || influencerMatches.spots.length > 0) && (
+            <div className="mb-6">
+              <h3 className="font-display font-semibold text-sm text-foreground mb-3 flex items-center gap-2">
+                <TrendingUp size={14} className="text-primary" />
+                On the Map
+                <span className="text-[10px] font-normal text-muted-foreground">
+                  &mdash; matched to events &amp; hot spots
+                </span>
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {influencerMatches.events.map((e, i) => (
+                  <EventCard
+                    key={`map-event-${i}`}
+                    event={e}
+                    onClick={() => setSelectedEvent(e)}
+                  />
+                ))}
+                {influencerMatches.spots.map((s, i) => (
+                  <SpotCard
+                    key={`map-spot-${i}`}
+                    spot={s}
+                    onClick={() => setSelectedSpot(s)}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* ALL influencer picks — the full tracker */}
+          <div>
+            <h3 className="font-display font-semibold text-sm text-foreground mb-3 flex items-center gap-2">
+              <Sparkles size={14} className="text-primary" />
+              All Recent Picks
+              <span className="text-[10px] font-normal text-muted-foreground">
+                &mdash; everything they're posting about
+              </span>
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {influencerPicks.map((pick, i) => (
+                <InfluencerPickCard
+                  key={`pick-${i}`}
+                  pick={pick}
+                  influencer={selectedInfluencer}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* What's Hot Feed — ONLY shown when no influencer selected */}
+      {!selectedInfluencer && (
+        <div className="px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto">
+          <div className="flex items-center gap-2 mb-4">
+            <TrendingUp size={18} className="text-primary" />
+            <h2 className="font-display font-bold text-lg text-foreground">
+              What's Hot Right Now
+            </h2>
+          </div>
+
+          {/* Filter chips */}
           <div className="mb-5">
             <FilterChips options={categories} selected={category} onChange={setCategory} />
           </div>
-        )}
 
-        {/* VERTICAL responsive grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {feedItems.map((item, i) => (
-            <div key={`${item.type}-${i}`}>
-              {item.type === "event" ? (
-                <EventCard
-                  event={item.data as PhillyEvent}
-                  onClick={() => setSelectedEvent(item.data as PhillyEvent)}
-                />
-              ) : (
-                <SpotCard
-                  spot={item.data as HotSpot}
-                  onClick={() => setSelectedSpot(item.data as HotSpot)}
-                />
-              )}
-            </div>
-          ))}
-        </div>
+          {/* VERTICAL responsive grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {feedItems.map((item, i) => (
+              <div key={`${item.type}-${i}`}>
+                {item.type === "event" ? (
+                  <EventCard
+                    event={item.data as PhillyEvent}
+                    onClick={() => setSelectedEvent(item.data as PhillyEvent)}
+                  />
+                ) : (
+                  <SpotCard
+                    spot={item.data as HotSpot}
+                    onClick={() => setSelectedSpot(item.data as HotSpot)}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
 
-        {/* Featured Insider Section */}
-        {!selectedInfluencer && (
+          {/* Featured Insider Section */}
           <div className="mt-10">
             <div className="flex items-center gap-2 mb-5">
               <Sparkles size={18} className="text-primary" />
@@ -328,8 +440,8 @@ export function ExplorePage() {
               ))}
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Email Capture */}
       <div className="px-4 sm:px-6 lg:px-8 pb-6 max-w-7xl mx-auto">

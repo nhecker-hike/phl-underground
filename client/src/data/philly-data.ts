@@ -42,6 +42,7 @@ export interface InfluencerPick {
   neighborhood: string;
   quote: string;
   date: string;
+  reelUrl?: string;
 }
 
 export interface Influencer {
@@ -1171,10 +1172,10 @@ export const influencers: Influencer[] = [
       Twitter: "https://x.com/Wooderice215",
     },
     recentPicks: [
-      { name: "Wooder Ice Happy Hour at Uchi", type: "event", neighborhood: "Center City", quote: "Hosted a takeover of Uchi's happy hour with specially themed hand rolls, cocktails, and merch. 1620 Sansom St.", date: "March 11, 2026" },
+      { name: "Wooder Ice Happy Hour at Uchi", type: "event", neighborhood: "Center City", quote: "Hosted a takeover of Uchi's happy hour with specially themed hand rolls, cocktails, and merch. 1620 Sansom St.", date: "March 11, 2026", reelUrl: "https://www.instagram.com/reel/DVbPtxsEXhr/" },
       { name: "Amá-kase at Amá", type: "event", neighborhood: "Fishtown", quote: "One-night-only 7-course Japanese-Mexican fusion 'Amá-kase' collaboration with Almanac and cocktail pairings.", date: "March 9, 2026" },
       { name: "Mi Vida", type: "restaurant", neighborhood: "Center City", quote: "New contemporary Mexican restaurant at East Market with 130+ tequila and mezcal selections. 1100-1150 Ludlow St.", date: "March 2026" },
-      { name: "PHS Pop Up Gardens", type: "event", neighborhood: "Manayunk", quote: "PHS Pop Up Gardens reopening for 2026 season starting March 13 with food, drinks, workshops, and Sunday market.", date: "March 13, 2026" },
+      { name: "PHS Pop Up Gardens", type: "event", neighborhood: "Manayunk", quote: "PHS Pop Up Gardens reopening for 2026 season starting March 13 with food, drinks, workshops, and Sunday market.", date: "March 13, 2026", reelUrl: "https://www.instagram.com/reel/DT08SyLgVIo/" },
       { name: "F1 Arcade Watch Party", type: "event", neighborhood: "Center City", quote: "F1 Arcade kicks off 2026 season with official Australian GP watch party and open sim racing. 1330 Chestnut St.", date: "March 2026" },
       {
         name: "Uchi Philadelphia",
@@ -1321,10 +1322,10 @@ export const influencers: Influencer[] = [
       TikTok: "https://www.tiktok.com/@josheatsphilly",
     },
     recentPicks: [
-      { name: "Pagano\'s Philly", type: "restaurant", neighborhood: "Center City", quote: "The perfect weekday pizza slice — a go-to for quick, quality lunch.", date: "March 16, 2026" },
-      { name: "Static", type: "bar", neighborhood: "Center City", quote: "New Center City bar at 1137 Spruce St — one of 5 new spots to try in 2026.", date: "January 2026" },
-      { name: "La Jefa", type: "restaurant", neighborhood: "Center City", quote: "New spot at 1605 Latimer St — part of the wave of exciting new Center City openings.", date: "January 2026" },
-      { name: "Dance Robot", type: "bar", neighborhood: "Center City", quote: "New bar at 1710 Sansom St — a fun addition to the Sansom Street nightlife corridor.", date: "January 2026" },
+      { name: "Pagano\'s Philly", type: "restaurant", neighborhood: "Center City", quote: "The perfect weekday pizza slice — a go-to for quick, quality lunch.", date: "March 16, 2026", reelUrl: "https://www.instagram.com/reel/DVyW4Dzjuer/" },
+      { name: "Static", type: "bar", neighborhood: "Center City", quote: "New Center City bar at 1137 Spruce St — one of 5 new spots to try in 2026.", date: "January 2026", reelUrl: "https://www.instagram.com/reel/DTBk57ljrqi/" },
+      { name: "La Jefa", type: "restaurant", neighborhood: "Center City", quote: "New spot at 1605 Latimer St — part of the wave of exciting new Center City openings.", date: "January 2026", reelUrl: "https://www.instagram.com/reel/DTGiFf6D2np/" },
+      { name: "Dance Robot", type: "bar", neighborhood: "Center City", quote: "New bar at 1710 Sansom St — a fun addition to the Sansom Street nightlife corridor.", date: "January 2026", reelUrl: "https://www.instagram.com/reel/DTBk57ljrqi/" },
       {
         name: "Emmett",
         type: "restaurant",
@@ -1514,8 +1515,8 @@ export const influencers: Influencer[] = [
       TikTok: "https://www.tiktok.com/@koryaversa",
     },
     recentPicks: [
-      { name: "Ministry of Awe", type: "event", neighborhood: "Old City", quote: "New immersive museum in a historic bank at 27 N 3rd St — America\'s most exciting new immersive art space with murals, interactive tech, and performances.", date: "March 14, 2026" },
-      { name: "NoLibs Espresso Martini Bar Crawl", type: "event", neighborhood: "Northern Liberties", quote: "3rd annual bar crawl with 20+ bars offering $8-12 espresso martinis and food specials. Participating spots include Amina, Bar1010, Bourbon and Branch.", date: "March 12, 2026" },
+      { name: "Ministry of Awe", type: "event", neighborhood: "Old City", quote: "New immersive museum in a historic bank at 27 N 3rd St — America\'s most exciting new immersive art space with murals, interactive tech, and performances.", date: "March 14, 2026", reelUrl: "https://www.instagram.com/reel/DV3gylSjaf2/" },
+      { name: "NoLibs Espresso Martini Bar Crawl", type: "event", neighborhood: "Northern Liberties", quote: "3rd annual bar crawl with 20+ bars offering $8-12 espresso martinis and food specials. Participating spots include Amina, Bar1010, Bourbon and Branch.", date: "March 12, 2026", reelUrl: "https://www.instagram.com/reel/DVpGPiMDdrS/" },
       { name: "Manayunk Restaurant Week", type: "event", neighborhood: "Manayunk", quote: "Spring edition with prix fixe menus $15-45 at various restaurants in Historic Downtown Manayunk and Main Street.", date: "March 8, 2026" },
       {
         name: "Northern Liberties Restaurant Week 2026",
@@ -1561,7 +1562,7 @@ export const influencers: Influencer[] = [
       TikTok: "https://www.tiktok.com/@djour.philly",
     },
     recentPicks: [
-      { name: "Marina\'s Pizza Co", type: "restaurant", neighborhood: "Fishtown", quote: "Pizza spot at 1425 Frankford Ave — featured in his latest food map reel.", date: "March 13, 2026" },
+      { name: "Marina\'s Pizza Co", type: "restaurant", neighborhood: "Fishtown", quote: "Pizza spot at 1425 Frankford Ave — featured in his latest food map reel.", date: "March 13, 2026", reelUrl: "https://www.instagram.com/reel/DS-TX-djrOp/" },
       { name: "Percy Diner", type: "restaurant", neighborhood: "Northern Liberties", quote: "Diner at 1700 N Front St — highlighted in recent post alongside other neighborhood finds.", date: "March 13, 2026" },
       {
         name: "Palizzi Social Club",
@@ -1607,7 +1608,7 @@ export const influencers: Influencer[] = [
     },
     recentPicks: [
       { name: "Frame Philly", type: "event", neighborhood: "Philadelphia", quote: "Influencer-only dinner event with Cellar Eleven Wine — exclusive ticket giveaway.", date: "March 2026" },
-      { name: "Cafe Carmela", type: "restaurant", neighborhood: "South Philly", quote: "Spicy Crab Gravy on special this week only — a must-try limited offering.", date: "March 3, 2026" },
+      { name: "Cafe Carmela", type: "restaurant", neighborhood: "South Philly", quote: "Spicy Crab Gravy on special this week only — a must-try limited offering.", date: "March 3, 2026", reelUrl: "https://www.instagram.com/reel/DVbbuPbDhk-/" },
       {
         name: "Center City District Restaurant Week",
         type: "event",
@@ -1639,7 +1640,7 @@ export const influencers: Influencer[] = [
       Facebook: "https://www.facebook.com/visitphilly",
     },
     recentPicks: [
-      { name: "Ministry of Awe", type: "event", neighborhood: "Old City", quote: "An abandoned 19th-century bank in Old City transformed into an immersive, 6-story work of art — just in time for Philly 250.", date: "March 14, 2026" },
+      { name: "Ministry of Awe", type: "event", neighborhood: "Old City", quote: "An abandoned 19th-century bank in Old City transformed into an immersive, 6-story work of art — just in time for Philly 250.", date: "March 14, 2026", reelUrl: "https://www.instagram.com/reel/DV6dIJtiVBt/" },
       { name: "Philly Pride Visitor Center", type: "spot", neighborhood: "Midtown Village", quote: "Now open: one of America\'s first dedicated LGBTQ+ visitor centers with souvenirs, attraction ticketing, and itinerary planning.", date: "February 25, 2026" },
       { name: "52 Weeks of Firsts", type: "event", neighborhood: "Various", quote: "Honoring 250 years of Philly pioneering by celebrating the city\'s many historic achievements — every week, all throughout 2026.", date: "March 2026" },
       { name: "A Nation of Artists", type: "event", neighborhood: "Center City", quote: "A cultural milestone celebrating the nation\'s creative legacy at the Philadelphia Museum of Art and PAFA, opening April 12.", date: "March 2026" },
