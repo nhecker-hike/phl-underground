@@ -13,6 +13,7 @@ import {
   type Influencer,
 } from "@/data/philly-data";
 import { Sparkles, TrendingUp } from "lucide-react";
+import { EmailCapture } from "@/components/EmailCapture";
 
 const categories = ["All", "Events", "Food", "Nightlife", "Music", "Arts", "Outdoor", "Insider Picks"] as const;
 
@@ -326,6 +327,11 @@ export function ExplorePage() {
             </div>
           </div>
         )}
+      </div>
+
+      {/* Email Capture */}
+      <div className="px-4 sm:px-6 lg:px-8 pb-6 max-w-7xl mx-auto">
+        <EmailCapture />
       </div>
 
       {/* Drawers */}
