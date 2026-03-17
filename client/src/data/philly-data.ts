@@ -53,6 +53,7 @@ export interface Influencer {
   followers: string;
   focus: string;
   avatar: string;
+  socialLinks: Record<string, string>;
   recentPicks: InfluencerPick[];
 }
 
@@ -1164,6 +1165,11 @@ export const influencers: Influencer[] = [
     followers: "188K Instagram, 33.3K TikTok (3.1M likes), 150K+ across all platforms",
     focus: "culture | food | nightlife | events",
     avatar: "./influencers/wooder-ice.jpg",
+    socialLinks: {
+      Instagram: "https://www.instagram.com/wooder_ice",
+      TikTok: "https://www.tiktok.com/@wooder_ice",
+      Twitter: "https://x.com/Wooderice215",
+    },
     recentPicks: [
       { name: "Wooder Ice Happy Hour at Uchi", type: "event", neighborhood: "Center City", quote: "Hosted a takeover of Uchi's happy hour with specially themed hand rolls, cocktails, and merch. 1620 Sansom St.", date: "March 11, 2026" },
       { name: "Amá-kase at Amá", type: "event", neighborhood: "Fishtown", quote: "One-night-only 7-course Japanese-Mexican fusion 'Amá-kase' collaboration with Almanac and cocktail pairings.", date: "March 9, 2026" },
@@ -1216,6 +1222,11 @@ export const influencers: Influencer[] = [
     followers: "~85K-90K Instagram, strong TikTok presence",
     focus: "food",
     avatar: "./influencers/feedingtimetv.jpg",
+    socialLinks: {
+      Instagram: "https://www.instagram.com/feedingtimetv",
+      TikTok: "https://www.tiktok.com/@feedingtimetv",
+      Facebook: "https://www.facebook.com/feedingtimetv",
+    },
     recentPicks: [
       { name: "Gilda Cafe", type: "restaurant", neighborhood: "Fishtown", quote: "Outstanding breakfast sandwiches and creamy natas (pastéis de nata) — a must-visit morning spot.", date: "March 10, 2026" },
       { name: "Uchi Philadelphia", type: "restaurant", neighborhood: "Rittenhouse", quote: "New Philly sushi restaurant with a beautiful space — dining room, sushi bar, and regular bar.", date: "March 5, 2026" },
@@ -1260,6 +1271,11 @@ export const influencers: Influencer[] = [
     followers: "603.9K Instagram",
     focus: "food",
     avatar: "./influencers/thephillyfoodfanatic.jpg",
+    socialLinks: {
+      Instagram: "https://www.instagram.com/thephillyfoodfanatic",
+      TikTok: "https://www.tiktok.com/@thephillyfoodfanatic",
+      Website: "https://www.thephillyfoodfanatic.com",
+    },
     recentPicks: [
       {
         name: "Ala Mousse Philly",
@@ -1300,6 +1316,10 @@ export const influencers: Influencer[] = [
     followers: "187K-190K Instagram, 25K+ TikTok",
     focus: "food | lifestyle",
     avatar: "./influencers/josheatsphilly.jpg",
+    socialLinks: {
+      Instagram: "https://www.instagram.com/josheatsphilly",
+      TikTok: "https://www.tiktok.com/@josheatsphilly",
+    },
     recentPicks: [
       { name: "Pagano\'s Philly", type: "restaurant", neighborhood: "Center City", quote: "The perfect weekday pizza slice — a go-to for quick, quality lunch.", date: "March 16, 2026" },
       { name: "Static", type: "bar", neighborhood: "Center City", quote: "New Center City bar at 1137 Spruce St — one of 5 new spots to try in 2026.", date: "January 2026" },
@@ -1351,6 +1371,10 @@ export const influencers: Influencer[] = [
     followers: "182K Instagram",
     focus: "food | lifestyle | culture",
     avatar: "./influencers/cass-matthews.jpg",
+    socialLinks: {
+      Instagram: "https://www.instagram.com/cass_andthecity",
+      TikTok: "https://www.tiktok.com/@cass_andthecity",
+    },
     recentPicks: [
       {
         name: "Dim Sum Garden",
@@ -1391,6 +1415,11 @@ export const influencers: Influencer[] = [
     followers: "109.6K Instagram",
     focus: "food | nightlife",
     avatar: "./influencers/phillyfoodladies.jpg",
+    socialLinks: {
+      Instagram: "https://www.instagram.com/phillyfoodladies",
+      TikTok: "https://www.tiktok.com/@phillyfoodladies",
+      Facebook: "https://www.facebook.com/phillyfoodladies",
+    },
     recentPicks: [
       { name: "Perfect Together Cafe", type: "restaurant", neighborhood: "South Street", quote: "Uzbek/Czech food spot — a first-time cuisine experience they\'re planning to visit this spring.", date: "February 22, 2026" },
       { name: "PHS Philadelphia Flower Show", type: "event", neighborhood: "Center City", quote: "Calling all horticultural lovers! Philly\'s biggest show dedicated to plants returns.", date: "March 2, 2026" },
@@ -1441,6 +1470,10 @@ export const influencers: Influencer[] = [
     followers: "92K Instagram",
     focus: "food | lifestyle",
     avatar: "./influencers/fueledonphilly.jpg",
+    socialLinks: {
+      Instagram: "https://www.instagram.com/fueledonphilly",
+      YouTube: "https://www.youtube.com/@Fueledonphilly",
+    },
     recentPicks: [
       { name: "Yards Brewing Watch Party", type: "event", neighborhood: "Spring Garden", quote: "Eagles game watch party at $50/person with open bar (beer & cocktails), unlimited wings, pretzels, hummus, and a DJ.", date: "March 2026" },
       { name: "Butcher and Singer", type: "restaurant", neighborhood: "Rittenhouse Square", quote: "A go-to spot — loves their baked mac & cheese (with veggies) as comfort food perfection.", date: "March 2026" },
@@ -1476,6 +1509,10 @@ export const influencers: Influencer[] = [
     followers: "103K Instagram",
     focus: "food | events | culture | nightlife",
     avatar: "./influencers/koryaversa.jpg",
+    socialLinks: {
+      Instagram: "https://www.instagram.com/koryaversa",
+      TikTok: "https://www.tiktok.com/@koryaversa",
+    },
     recentPicks: [
       { name: "Ministry of Awe", type: "event", neighborhood: "Old City", quote: "New immersive museum in a historic bank at 27 N 3rd St — America\'s most exciting new immersive art space with murals, interactive tech, and performances.", date: "March 14, 2026" },
       { name: "NoLibs Espresso Martini Bar Crawl", type: "event", neighborhood: "Northern Liberties", quote: "3rd annual bar crawl with 20+ bars offering $8-12 espresso martinis and food specials. Participating spots include Amina, Bar1010, Bourbon and Branch.", date: "March 12, 2026" },
@@ -1519,6 +1556,10 @@ export const influencers: Influencer[] = [
     followers: "~48K Instagram",
     focus: "food",
     avatar: "./influencers/djour-philly.jpg",
+    socialLinks: {
+      Instagram: "https://www.instagram.com/djour.philly",
+      TikTok: "https://www.tiktok.com/@djour.philly",
+    },
     recentPicks: [
       { name: "Marina\'s Pizza Co", type: "restaurant", neighborhood: "Fishtown", quote: "Pizza spot at 1425 Frankford Ave — featured in his latest food map reel.", date: "March 13, 2026" },
       { name: "Percy Diner", type: "restaurant", neighborhood: "Northern Liberties", quote: "Diner at 1700 N Front St — highlighted in recent post alongside other neighborhood finds.", date: "March 13, 2026" },
@@ -1561,6 +1602,9 @@ export const influencers: Influencer[] = [
     followers: "97.8K Instagram",
     focus: "food",
     avatar: "./influencers/swagfoodphilly.jpg",
+    socialLinks: {
+      Instagram: "https://www.instagram.com/swagfoodphilly",
+    },
     recentPicks: [
       { name: "Frame Philly", type: "event", neighborhood: "Philadelphia", quote: "Influencer-only dinner event with Cellar Eleven Wine — exclusive ticket giveaway.", date: "March 2026" },
       { name: "Cafe Carmela", type: "restaurant", neighborhood: "South Philly", quote: "Spicy Crab Gravy on special this week only — a must-try limited offering.", date: "March 3, 2026" },
@@ -1589,6 +1633,11 @@ export const influencers: Influencer[] = [
     followers: "346K Instagram",
     focus: "tourism | events | culture | food",
     avatar: "./influencers/visitphilly.jpg",
+    socialLinks: {
+      Instagram: "https://www.instagram.com/visitphilly",
+      TikTok: "https://www.tiktok.com/@visit.philly",
+      Facebook: "https://www.facebook.com/visitphilly",
+    },
     recentPicks: [
       { name: "Ministry of Awe", type: "event", neighborhood: "Old City", quote: "An abandoned 19th-century bank in Old City transformed into an immersive, 6-story work of art — just in time for Philly 250.", date: "March 14, 2026" },
       { name: "Philly Pride Visitor Center", type: "spot", neighborhood: "Midtown Village", quote: "Now open: one of America\'s first dedicated LGBTQ+ visitor centers with souvenirs, attraction ticketing, and itinerary planning.", date: "February 25, 2026" },
@@ -1607,6 +1656,10 @@ export const influencers: Influencer[] = [
     followers: "19K Instagram, 5.3K TikTok (1.3M likes)",
     focus: "food | travel | lifestyle",
     avatar: "./influencers/farahstacy.jpg",
+    socialLinks: {
+      Instagram: "https://www.instagram.com/farahstacy",
+      TikTok: "https://www.tiktok.com/@farah_stacy",
+    },
     recentPicks: [
       { name: "Cilantro", type: "restaurant", neighborhood: "Philadelphia", quote: "Her go-to for kunafa, tabbouli, and beef shawarma wraps — highlighted as a Visit Philly foodie pick.", date: "March 2026" },
       { name: "Fleur\'s", type: "restaurant", neighborhood: "Center City", quote: "Visit Philly\'s Winter Soiree venue — the cutest spot for restaurant week with amazing bacon wrapped scallops.", date: "December 2025" },

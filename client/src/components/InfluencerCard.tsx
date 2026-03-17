@@ -85,21 +85,51 @@ export function InfluencerCard({ influencer }: Props) {
                 </span>
               )}
             </div>
-            <span className="text-xs text-primary font-medium">{influencer.handle}</span>
+            {(() => {
+              const primaryUrl = influencer.socialLinks?.Instagram || Object.values(influencer.socialLinks || {})[0];
+              return primaryUrl ? (
+                <a
+                  href={primaryUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-primary font-medium hover:text-primary/80 transition-colors"
+                  data-testid={`link-handle-${influencer.id}`}
+                >
+                  {influencer.handle}
+                </a>
+              ) : (
+                <span className="text-xs text-primary font-medium">{influencer.handle}</span>
+              );
+            })()}
             <p className="text-xs text-muted-foreground mt-0.5">{influencer.followers}</p>
           </div>
         </div>
 
-        {/* Platform badges */}
+        {/* Platform badges — clickable links */}
         <div className="flex items-center justify-center gap-1.5 mt-4 flex-wrap">
-          {platforms.map((p) => (
-            <span
-              key={p}
-              className={`text-[10px] font-medium px-2 py-0.5 rounded ${platformColors[p] || "bg-slate-500/15 text-slate-300"}`}
-            >
-              {p}
-            </span>
-          ))}
+          {platforms.map((p) => {
+            const url = influencer.socialLinks?.[p];
+            return url ? (
+              <a
+                key={p}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`text-[10px] font-medium px-2 py-0.5 rounded inline-flex items-center gap-1 transition-opacity hover:opacity-80 ${platformColors[p] || "bg-slate-500/15 text-slate-300"}`}
+                data-testid={`link-platform-${influencer.id}-${p.toLowerCase()}`}
+              >
+                {p}
+                <ExternalLink size={8} className="opacity-60" />
+              </a>
+            ) : (
+              <span
+                key={p}
+                className={`text-[10px] font-medium px-2 py-0.5 rounded ${platformColors[p] || "bg-slate-500/15 text-slate-300"}`}
+              >
+                {p}
+              </span>
+            );
+          })}
         </div>
 
         {/* Focus / content tags */}
