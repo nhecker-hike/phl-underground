@@ -38,58 +38,54 @@ export function SpotCard({ spot, onClick }: Props) {
   return (
     <button
       onClick={onClick}
-      className={`text-left w-full group rounded-xl border border-border/50 bg-card hover:bg-white/[0.04] transition-all duration-200 p-4 ${
+      className={`text-left w-full h-full group rounded-xl border border-border/50 bg-card hover:bg-white/[0.04] transition-all duration-200 p-4 flex flex-col ${
         spot.isInsider ? "insider-glow" : ""
       }`}
       data-testid={`card-spot-${spot.id}`}
     >
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0 flex-1">
-          {/* Title row */}
-          <div className="flex items-center gap-2 mb-1">
-            <h3 className="font-display font-semibold text-[15px] text-foreground group-hover:text-primary transition-colors leading-tight truncate">
-              {spot.name}
-            </h3>
-            {spot.isNew && (
-              <span className="flex-shrink-0 text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 uppercase tracking-wider">
-                NEW
-              </span>
-            )}
-          </div>
+      {/* Title row */}
+      <div className="flex items-center gap-2 mb-1">
+        <h3 className="font-display font-semibold text-[15px] text-foreground group-hover:text-primary transition-colors leading-snug line-clamp-2">
+          {spot.name}
+        </h3>
+        {spot.isNew && (
+          <span className="flex-shrink-0 text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 uppercase tracking-wider">
+            NEW
+          </span>
+        )}
+      </div>
 
-          {/* Location */}
-          <div className="flex items-center gap-1.5 mb-2">
-            <MapPin size={11} className="text-muted-foreground flex-shrink-0" />
-            <span className="text-xs text-muted-foreground truncate">{spot.neighborhood}</span>
-            <span className="text-muted-foreground/30 text-xs">·</span>
-            <PriceDots range={spot.priceRange} />
-          </div>
+      {/* Location */}
+      <div className="flex items-center gap-1.5 mb-2">
+        <MapPin size={11} className="text-muted-foreground flex-shrink-0" />
+        <span className="text-xs text-muted-foreground truncate">{spot.neighborhood}</span>
+        <span className="text-muted-foreground/30 text-xs">·</span>
+        <PriceDots range={spot.priceRange} />
+      </div>
 
-          {/* Description */}
-          <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 mb-2.5">
-            {spot.description}
-          </p>
+      {/* Description */}
+      <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 mb-auto">
+        {spot.description}
+      </p>
 
-          {/* Badges */}
-          <div className="flex items-center gap-1.5 flex-wrap">
-            <span className={`text-[10px] font-medium px-2 py-0.5 rounded capitalize ${typeBadgeColors[spot.type] || "bg-slate-500/15 text-slate-300"}`}>
-              {spot.type}
-            </span>
-            <span className={`text-[10px] font-medium px-2 py-0.5 rounded ${vibeBadgeColors[spot.vibeTag] || "bg-slate-500/15 text-slate-300"}`}>
-              {spot.vibeTag}
-            </span>
-            {spot.cuisine && (
-              <span className="text-[10px] font-medium px-2 py-0.5 rounded bg-white/5 text-muted-foreground">
-                {spot.cuisine}
-              </span>
-            )}
-            {spot.isInsider && (
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-primary/20 text-primary">
-                INSIDER
-              </span>
-            )}
-          </div>
-        </div>
+      {/* Badges — pushed to bottom */}
+      <div className="flex items-center gap-1.5 mt-3 flex-wrap">
+        <span className={`text-[10px] font-medium px-2 py-0.5 rounded capitalize ${typeBadgeColors[spot.type] || "bg-slate-500/15 text-slate-300"}`}>
+          {spot.type}
+        </span>
+        <span className={`text-[10px] font-medium px-2 py-0.5 rounded ${vibeBadgeColors[spot.vibeTag] || "bg-slate-500/15 text-slate-300"}`}>
+          {spot.vibeTag}
+        </span>
+        {spot.cuisine && (
+          <span className="text-[10px] font-medium px-2 py-0.5 rounded bg-white/5 text-muted-foreground">
+            {spot.cuisine}
+          </span>
+        )}
+        {spot.isInsider && (
+          <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-primary/20 text-primary">
+            INSIDER
+          </span>
+        )}
       </div>
     </button>
   );
