@@ -246,3 +246,16 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* Safe area for bottom nav on notched devices */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Mobile touch feedback */
+@media (max-width: 767px) {
+  button:active {
+    transform: scale(0.97);
+    transition: transform 0.1s ease;
+  }
+}

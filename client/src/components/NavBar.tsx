@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Search, X, Menu } from "lucide-react";
+import { Search } from "lucide-react";
 import { Logo } from "./Logo";
 import { SearchOverlay } from "./SearchOverlay";
 
@@ -15,8 +15,6 @@ const navLinks = [
 export function NavBar() {
   const [location] = useLocation();
   const [searchOpen, setSearchOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
     <>
       <nav
@@ -71,37 +69,9 @@ export function NavBar() {
                 </kbd>
               </button>
 
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2 text-muted-foreground hover:text-foreground rounded-lg hover:bg-white/5 transition"
-                data-testid="button-mobile-menu"
-              >
-                {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-              </button>
             </div>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-border/50 px-4 py-3 animate-fade-in" data-testid="mobile-menu">
-            {navLinks.map((link) => {
-              const isActive = location === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`block px-3 py-2.5 text-sm font-medium rounded-lg no-underline transition ${
-                    isActive ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </div>
-        )}
       </nav>
 
       {searchOpen && <SearchOverlay onClose={() => setSearchOpen(false)} />}

@@ -30,7 +30,7 @@ function getShortName(name: string): string {
   // Known short mappings
   const map: Record<string, string> = {
     "Wooder Ice": "Wooder",
-    "FeedingTimeTV": "FeedingTime",
+    "FeedingTimeTV": "Feeding",
     "The Philly Food Fanatic": "Fanatic",
     "Josh Moore": "Josh",
     "Cass Matthews": "Cass",
@@ -173,9 +173,9 @@ export function ExplorePage() {
   return (
     <div className="min-h-screen" data-testid="page-explore">
       {/* Influencer Picker */}
-      <div className="px-4 sm:px-6 lg:px-8 pt-5 pb-2 max-w-7xl mx-auto">
+      <div className="px-3 sm:px-6 lg:px-8 pt-5 pb-2 max-w-7xl mx-auto">
         <div
-          className="flex items-start gap-3 sm:gap-4 overflow-x-auto pb-3 pt-2 px-2 scrollbar-hide justify-center"
+          className="flex items-start gap-3 sm:gap-4 overflow-x-auto pb-3 pt-2 px-1 scrollbar-hide sm:justify-center"
           data-testid="influencer-picker"
         >
           {/* All button */}
@@ -188,16 +188,16 @@ export function ExplorePage() {
           >
             <div className="relative">
               <div
-                className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
+                className={`w-14 h-14 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
                   !selectedInfluencer
-                    ? "bg-primary/20 text-primary ring-2 ring-primary ring-offset-2 ring-offset-background"
-                    : "bg-white/10 text-muted-foreground"
+                    ? "bg-primary/20 text-primary ring-[2.5px] ring-primary shadow-[0_0_12px_hsl(45,100%,60%,0.35)]"
+                    : "bg-white/10 text-muted-foreground ring-1 ring-white/10"
                 }`}
               >
                 All
               </div>
             </div>
-            <span className={`text-[10px] text-center leading-tight ${!selectedInfluencer ? "text-primary font-semibold" : "text-muted-foreground"}`}>
+            <span className={`text-[10px] min-w-[60px] text-center leading-tight ${!selectedInfluencer ? "text-primary font-semibold" : "text-muted-foreground"}`}>
               All
             </span>
           </button>
@@ -210,7 +210,11 @@ export function ExplorePage() {
                 key={inf.id}
                 onClick={() => setSelectedInfluencer(isSelected ? null : inf)}
                 className={`flex flex-col items-center gap-1.5 flex-shrink-0 transition-all ${
-                  isSelected ? "opacity-100" : "opacity-60 hover:opacity-90"
+                  isSelected
+                    ? "opacity-100"
+                    : selectedInfluencer
+                      ? "opacity-40 hover:opacity-70"
+                      : "opacity-80 hover:opacity-100"
                 }`}
                 data-testid={`influencer-pick-${inf.id}`}
               >
@@ -226,12 +230,12 @@ export function ExplorePage() {
                     </div>
                   )}
                   <div
-                    className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden transition-all ${
+                    className={`w-14 h-14 rounded-full overflow-hidden transition-all ${
                       isSelected
-                        ? "ring-2 ring-primary ring-offset-2 ring-offset-background"
+                        ? "ring-[2.5px] ring-primary shadow-[0_0_12px_hsl(45,100%,60%,0.35)]"
                         : isRecent
                           ? "ring-2 ring-primary/40"
-                          : ""
+                          : "ring-1 ring-white/10"
                     }`}
                   >
                     {inf.avatar ? (
@@ -260,7 +264,7 @@ export function ExplorePage() {
                   </div>
                 </div>
                 <span
-                  className={`text-[10px] max-w-[72px] truncate text-center leading-tight ${
+                  className={`text-[10px] min-w-[60px] max-w-[72px] truncate text-center leading-tight ${
                     isSelected ? "text-primary font-semibold" : "text-muted-foreground"
                   }`}
                 >
@@ -273,9 +277,10 @@ export function ExplorePage() {
       </div>
 
       {/* Map */}
-      <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div className="px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <MapView
-          height="50vh"
+          height="40vh"
+          desktopHeight="50vh"
           onEventClick={setSelectedEvent}
           onSpotClick={setSelectedSpot}
           filteredEvents={filteredMapEvents}

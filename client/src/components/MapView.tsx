@@ -26,6 +26,7 @@ const greenIcon = createMarkerIcon("hsl(142, 71%, 45%)");
 
 interface Props {
   height?: string;
+  desktopHeight?: string;
   onEventClick?: (event: PhillyEvent) => void;
   onSpotClick?: (spot: HotSpot) => void;
   filteredEvents?: PhillyEvent[];
@@ -37,6 +38,7 @@ interface Props {
 
 export function MapView({
   height = "60vh",
+  desktopHeight,
   onEventClick,
   onSpotClick,
   filteredEvents,
@@ -158,7 +160,10 @@ export function MapView({
   }, [filteredEvents, filteredSpots, showEvents, showSpots, showSports, onEventClick, onSpotClick]);
 
   return (
-    <div className="relative" style={{ height, width: "100%" }}>
+    <div className="relative" style={{ height, width: "100%" }} data-testid="map-wrapper">
+      {desktopHeight && (
+        <style>{`@media (min-width: 768px) { [data-testid="map-wrapper"] { height: ${desktopHeight} !important; } }`}</style>
+      )}
       <div
         ref={mapRef}
         style={{ height: "100%", width: "100%" }}

@@ -11,6 +11,7 @@ import { SpotsPage } from "@/pages/SpotsPage";
 import { SportsPage } from "@/pages/SportsPage";
 import { InfluencersPage } from "@/pages/InfluencersPage";
 import { PerplexityAttribution } from "@/components/PerplexityAttribution";
+import { BottomNav } from "@/components/BottomNav";
 import NotFound from "@/pages/not-found";
 
 function AppRouter() {
@@ -34,10 +35,11 @@ function App() {
         <Router hook={useHashLocation}>
           <div className="min-h-screen bg-background text-foreground">
             <NavBar />
-            <main>
+            <main className="pb-16 md:pb-0">
               <AppRouter />
             </main>
-            <footer className="border-t border-border/30 py-6 px-4 mt-8">
+            <BottomNav />
+            <footer className="hidden md:block border-t border-border/30 py-6 px-4 mt-8">
               <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
                 <p className="text-xs text-muted-foreground/50">
                   PHL Underground — Philadelphia's insider city guide
