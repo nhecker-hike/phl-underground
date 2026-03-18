@@ -1,0 +1,37 @@
+{
+  "date": "2026-03-18",
+  "events_added": 13,
+  "hotspots_added": 7,
+  "expired_removed": 1,
+  "duplicates_removed": 1,
+  "influencer_updates": 5,
+  "final_events": 61,
+  "final_hotspots": 52,
+  "new_event_names": [
+    "Ministry of Awe \u2014 Immersive Art Experience",
+    "Beyonc\u00e9 + Gaga Night at Underground Arts",
+    "Florence + The Machine at Xfinity Mobile Arena",
+    "Snail Mail at The Fillmore Philadelphia",
+    "Waxahatchee at The Met Philadelphia",
+    "Gary Numan at Keswick Theatre",
+    "Drain at Union Transfer",
+    "The Brook & The Bluff at Union Transfer",
+    "Thursday at Union Transfer",
+    "Sunn O))) at Union Transfer",
+    "Alice Phoebe Lou at Union Transfer",
+    "Tigers Jaw at Union Transfer",
+    "Pancakes & Booze Art Show at Underground Arts"
+  ],
+  "new_hotspot_names": [
+    "Adda",
+    "Ayat",
+    "7th Street Burger",
+    "Terra Grill",
+    "Soufiane at the Morris",
+    "Bar Caviar",
+    "Lovechild"
+  ],
+  "expired_names": [
+    "Sticky Fingers \u2014 Live in North America"
+  ]
+}
