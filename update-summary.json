@@ -1,37 +1,36 @@
 {
-  "date": "2026-03-18",
-  "events_added": 13,
-  "hotspots_added": 7,
-  "expired_removed": 1,
-  "duplicates_removed": 1,
-  "influencer_updates": 5,
-  "final_events": 61,
-  "final_hotspots": 52,
+  "date": "2026-03-19",
+  "run_number": 3,
+  "events_added": 12,
+  "hotspots_added": 5,
+  "expired_removed": 2,
+  "duplicates_removed": 0,
+  "influencer_updates": 6,
+  "final_events": 71,
+  "final_hotspots": 58,
   "new_event_names": [
-    "Ministry of Awe \u2014 Immersive Art Experience",
-    "Beyonc\u00e9 + Gaga Night at Underground Arts",
-    "Florence + The Machine at Xfinity Mobile Arena",
-    "Snail Mail at The Fillmore Philadelphia",
-    "Waxahatchee at The Met Philadelphia",
-    "Gary Numan at Keswick Theatre",
-    "Drain at Union Transfer",
-    "The Brook & The Bluff at Union Transfer",
-    "Thursday at Union Transfer",
-    "Sunn O))) at Union Transfer",
-    "Alice Phoebe Lou at Union Transfer",
-    "Tigers Jaw at Union Transfer",
-    "Pancakes & Booze Art Show at Underground Arts"
+    "Gogol Bordello at Union Transfer",
+    "There, There -- Radiohead Tribute at Union Transfer",
+    "kwn at Theatre of Living Arts",
+    "Ryan Davis and The Roadhouse Band at Union Transfer",
+    "Luna at Union Transfer",
+    "Cardi B -- Little Miss Drama Tour at Xfinity Mobile Arena",
+    "Lewis Capaldi at The Liacouras Center",
+    "The Growlers at Union Transfer",
+    "Demi Lovato -- It\\'s Not That Deep Tour at Xfinity Mobile Arena",
+    "Endea Owens Jazz at Perelman Theater",
+    "Sing Us Home Festival",
+    "NewDad at Union Transfer"
   ],
   "new_hotspot_names": [
-    "Adda",
-    "Ayat",
-    "7th Street Burger",
-    "Terra Grill",
-    "Soufiane at the Morris",
-    "Bar Caviar",
-    "Lovechild"
+    "Huda Burger",
+    "Cerveau",
+    "El Sazon R.D.",
+    "Snack Shack at Forest & Main",
+    "The Grape"
   ],
   "expired_names": [
-    "Sticky Fingers \u2014 Live in North America"
+    "James Beard Foundation Taste America: Philadelphia",
+    "Gary Numan at Keswick Theatre"
   ]
 }
