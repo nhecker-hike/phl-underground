@@ -1,36 +1,30 @@
 {
-  "date": "2026-03-19",
-  "run_number": 3,
-  "events_added": 12,
-  "hotspots_added": 5,
-  "expired_removed": 2,
+  "date": "2026-03-20",
+  "run_number": 4,
+  "events_added": 8,
+  "hotspots_added": 4,
+  "expired_removed": 1,
   "duplicates_removed": 0,
-  "influencer_updates": 6,
-  "final_events": 71,
-  "final_hotspots": 58,
+  "influencer_updates": 5,
+  "final_events": 78,
+  "final_hotspots": 62,
   "new_event_names": [
-    "Gogol Bordello at Union Transfer",
-    "There, There -- Radiohead Tribute at Union Transfer",
-    "kwn at Theatre of Living Arts",
-    "Ryan Davis and The Roadhouse Band at Union Transfer",
-    "Luna at Union Transfer",
-    "Cardi B -- Little Miss Drama Tour at Xfinity Mobile Arena",
-    "Lewis Capaldi at The Liacouras Center",
-    "The Growlers at Union Transfer",
-    "Demi Lovato -- It\\'s Not That Deep Tour at Xfinity Mobile Arena",
-    "Endea Owens Jazz at Perelman Theater",
-    "Sing Us Home Festival",
-    "NewDad at Union Transfer"
+    "Phillies Charities 5K at Citizens Bank Park",
+    "Robert Plant with Saving Grace at The Met Philadelphia",
+    "Boys Like Girls -- The Soundtrack Of Your Life Tour at The Met",
+    "Floetry Presents Say Yes The Tour at The Met",
+    "Nick Offerman: Big Woodchuck at The Met Philadelphia",
+    "In Bloom Spring Block Party at Piazza Alta",
+    "RAYE -- This Tour May Contain New Music at The Met",
+    "Christian McBride & Edgar Meyer at Perelman Theater"
   ],
   "new_hotspot_names": [
-    "Huda Burger",
-    "Cerveau",
-    "El Sazon R.D.",
-    "Snack Shack at Forest & Main",
-    "The Grape"
+    "Known Associates",
+    "Bengaluru Cafe",
+    "The Blue Warbler",
+    "Taste Taco Bar"
   ],
   "expired_names": [
-    "James Beard Foundation Taste America: Philadelphia",
-    "Gary Numan at Keswick Theatre"
+    "Sweet Pill \u2014 Still There\\'s a Glow Tour"
   ]
 }

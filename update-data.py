@@ -1,32 +1,27 @@
 #!/usr/bin/env python3
-"""PHL Underground Nightly Data Refresh -- Run #3 (March 19, 2026)"""
+"""PHL Underground Nightly Data Refresh -- Run #4 (March 20, 2026)"""
 
 import re
 import json
-from datetime import datetime
 
-TODAY = "2026-03-19"
+TODAY = "2026-03-20"
 DATA_FILE = "client/src/data/philly-data.ts"
 
 with open(DATA_FILE, "r") as f:
     content = f.read()
 
 # ===================================================================
-# 1. REMOVE EXPIRED EVENTS (date fully before today 2026-03-19)
+# 1. REMOVE EXPIRED EVENTS (last date strictly before today)
 # ===================================================================
 
 expired_ids = []
-
 event_blocks = re.finditer(
     r'  \{\s*\n\s*id:\s*"(event-\d+)",\s*\n\s*name:\s*"([^"]+)",\s*\n\s*date:\s*"([^"]+)"',
     content
 )
 
 for match in event_blocks:
-    eid = match.group(1)
-    ename = match.group(2)
-    raw_date = match.group(3)
-    
+    eid, ename, raw_date = match.group(1), match.group(2), match.group(3)
     dates_found = re.findall(r'(\d{4}-\d{2}-\d{2})', raw_date)
     if dates_found:
         last_date = max(dates_found)
@@ -42,181 +37,147 @@ for eid, ename, _ in expired_ids:
         r'  \{\s*\n\s*id:\s*"' + re.escape(eid) + r'".*?\n\s*isInsider:\s*(?:true|false),?\s*\n\s*\},?\n',
         re.DOTALL
     )
-    match = pattern.search(content)
-    if match:
-        content = content[:match.start()] + content[match.end():]
-        print(f"  Removed {eid}: {ename}")
+    m = pattern.search(content)
+    if m:
+        content = content[:m.start()] + content[m.end():]
+        print(f"  Removed {eid}")
     else:
         print(f"  WARNING: Could not find block for {eid}")
 
 # ===================================================================
-# 2. ADD NEW EVENTS (starting from event-72)
+# 2. ADD NEW EVENTS (starting from event-84)
 # ===================================================================
 
 new_events = [
     {
-        "id": "event-72",
-        "name": "Gogol Bordello at Union Transfer",
-        "date": "2026-03-24",
-        "time": "8:00 PM",
-        "venue": "Union Transfer",
-        "address": "1026 Spring Garden Street, Philadelphia, PA 19123",
-        "neighborhood": "Spring Garden",
-        "category": "music",
-        "description": "Gypsy punk legends Gogol Bordello bring their wild, multi-cultural carnival of rock to Union Transfer on their We Mean It, Man! 2026 tour. Eugene Hutz and crew deliver one of the most chaotic and joyful live experiences in music. With Puzzled Panther and Boris and the Joy opening.",
-        "price": "$35+",
-        "vibeTag": "underground",
-        "source": "utphilly.com / axs.com",
-        "lat": 39.9615,
-        "lng": -75.1553,
-        "isInsider": True,
-    },
-    {
-        "id": "event-73",
-        "name": "There, There -- Radiohead Tribute at Union Transfer",
-        "date": "2026-03-28",
-        "time": "8:00 PM",
-        "venue": "Union Transfer",
-        "address": "1026 Spring Garden Street, Philadelphia, PA 19123",
-        "neighborhood": "Spring Garden",
-        "category": "music",
-        "description": "A full Radiohead tribute experience at Union Transfer. Deep cuts, album favorites, and the atmospheric soundscapes that made Thom Yorke and company one of the most important bands of the past 30 years -- performed live by a dedicated tribute act.",
-        "price": "$20+",
-        "vibeTag": "indie",
-        "source": "concertfix.com",
-        "lat": 39.9615,
-        "lng": -75.1553,
-        "isInsider": True,
-    },
-    {
-        "id": "event-74",
-        "name": "kwn at Theatre of Living Arts",
-        "date": "2026-04-01",
-        "time": "8:00 PM",
-        "venue": "Theatre of Living Arts",
-        "address": "334 South Street, Philadelphia, PA 19147",
-        "neighborhood": "South Street",
-        "category": "music",
-        "description": "East London rising star kwn (pronounced kay-wuhn) brings her quiet storm 2.0 R&B to the TLA. Her hits like \\'do what i say\\' and \\'back of the club\\' are the soundtrack to late-night Philly energy. A name to know before she blows up.",
-        "price": "$25+",
-        "vibeTag": "underground",
-        "source": "livenation.com / ticketmaster.com",
-        "lat": 39.9410,
-        "lng": -75.1494,
-        "isInsider": True,
-    },
-    {
-        "id": "event-75",
-        "name": "Ryan Davis and The Roadhouse Band at Union Transfer",
-        "date": "2026-04-03",
-        "time": "8:00 PM",
-        "venue": "Union Transfer",
-        "address": "1026 Spring Garden Street, Philadelphia, PA 19123",
-        "neighborhood": "Spring Garden",
-        "category": "music",
-        "description": "Americana and heartland rock at its finest. Ryan Davis and The Roadhouse Band bring gritty, soulful country-rock to Union Transfer -- the kind of show where boots hit the floor and beers stay cold.",
-        "price": "$20+",
-        "vibeTag": "chill",
-        "source": "concertfix.com",
-        "lat": 39.9615,
-        "lng": -75.1553,
-        "isInsider": True,
-    },
-    {
-        "id": "event-76",
-        "name": "Luna at Union Transfer",
-        "date": "2026-04-05",
-        "time": "8:00 PM",
-        "venue": "Union Transfer",
-        "address": "1026 Spring Garden Street, Philadelphia, PA 19123",
-        "neighborhood": "Spring Garden",
-        "category": "music",
-        "description": "Dream pop icons Luna, led by Dean Wareham, return to the stage. Their shimmering guitars and Velvet Underground-influenced sound defined 90s indie rock. A rare chance to see legends in an intimate venue.",
-        "price": "$30+",
-        "vibeTag": "indie",
-        "source": "concertfix.com",
-        "lat": 39.9615,
-        "lng": -75.1553,
-        "isInsider": True,
-    },
-    {
-        "id": "event-77",
-        "name": "Cardi B -- Little Miss Drama Tour at Xfinity Mobile Arena",
-        "date": "2026-04-07",
-        "time": "7:30 PM",
-        "venue": "Xfinity Mobile Arena",
-        "address": "3601 S. Broad Street, Philadelphia, PA 19148",
+        "id": "event-84",
+        "name": "Phillies Charities 5K at Citizens Bank Park",
+        "date": "2026-03-21",
+        "time": "9:00 AM",
+        "venue": "Citizens Bank Park",
+        "address": "1 Citizens Bank Way, Philadelphia, PA 19148",
         "neighborhood": "South Philly",
-        "category": "music",
-        "description": "Cardi B takes over Xfinity Mobile Arena on her first headlining arena tour. High-energy performances of \\'Bodega Baddie,\\' \\'WAP,\\' and cuts from her latest triple-platinum album. One of the biggest hip-hop shows hitting Philly this spring.",
-        "price": "$70+",
+        "category": "sports",
+        "description": "The 16th annual Phillies Charities 5K loops through the Navy Yard and Citizens Bank Park. A Philly rite of spring with live music, fun surprises along the route, and four Phillies game tickets included with entry. Already sold out -- catch the energy as a spectator.",
+        "price": "$65 (sold out)",
         "vibeTag": "mainstream",
-        "source": "ticketmaster.com / xfinitymobilearena.com",
-        "lat": 39.9012,
-        "lng": -75.1745,
+        "source": "mlb.com/phillies",
+        "lat": 39.9057,
+        "lng": -75.1666,
         "isInsider": False,
     },
     {
-        "id": "event-78",
-        "name": "Lewis Capaldi at The Liacouras Center",
-        "date": "2026-04-15",
+        "id": "event-85",
+        "name": "Robert Plant with Saving Grace at The Met Philadelphia",
+        "date": "2026-04-04",
         "time": "7:30 PM",
-        "venue": "The Liacouras Center",
-        "address": "1776 N. Broad Street, Philadelphia, PA 19121",
-        "neighborhood": "North Philadelphia",
+        "venue": "The Met Philadelphia",
+        "address": "858 N. Broad Street, Philadelphia, PA 19130",
+        "neighborhood": "North Broad",
         "category": "music",
-        "description": "Scottish singer-songwriter Lewis Capaldi makes his triumphant comeback with special guest Joy Crookes. After a two-year hiatus, the \\'Dancing on My Own\\' hitmaker performs selections from his new EP including \\'Almost\\' and \\'Survive.\\' Expect tears and singalongs.",
-        "price": "$50+",
-        "vibeTag": "mainstream",
-        "source": "liacourascenter.com / livenation.com",
-        "lat": 39.9812,
-        "lng": -75.1553,
-        "isInsider": False,
-    },
-    {
-        "id": "event-79",
-        "name": "The Growlers at Union Transfer",
-        "date": "2026-04-17",
-        "time": "8:00 PM",
-        "venue": "Union Transfer",
-        "address": "1026 Spring Garden Street, Philadelphia, PA 19123",
-        "neighborhood": "Spring Garden",
-        "category": "music",
-        "description": "Beach goth pioneers The Growlers bring their hazy, psychedelic surf-rock to Union Transfer. A cult favorite with a laid-back California sound that translates perfectly to a sweaty Philly venue.",
-        "price": "$30+",
-        "vibeTag": "indie",
-        "source": "concertfix.com",
-        "lat": 39.9615,
-        "lng": -75.1553,
+        "description": "Led Zeppelin legend Robert Plant brings his intimate acoustic project Saving Grace to The Met, with Suzi Dian opening. A rare chance to hear one of rock\\'s greatest voices in a stripped-down, rootsy setting. This is bucket-list territory.",
+        "price": "$65+",
+        "vibeTag": "insider",
+        "source": "ticketmaster.com / themetphilly.com",
+        "lat": 39.9681,
+        "lng": -75.1586,
         "isInsider": True,
     },
     {
-        "id": "event-80",
-        "name": "Demi Lovato -- It\\'s Not That Deep Tour at Xfinity Mobile Arena",
-        "date": "2026-04-18",
-        "time": "8:00 PM",
-        "venue": "Xfinity Mobile Arena",
-        "address": "3601 S. Broad Street, Philadelphia, PA 19148",
-        "neighborhood": "South Philly",
+        "id": "event-86",
+        "name": "Boys Like Girls -- The Soundtrack Of Your Life Tour at The Met",
+        "date": "2026-04-09",
+        "time": "7:00 PM",
+        "venue": "The Met Philadelphia",
+        "address": "858 N. Broad Street, Philadelphia, PA 19130",
+        "neighborhood": "North Broad",
         "category": "music",
-        "description": "Demi Lovato returns with dance-pop bangers and high-energy arena production on the It\\'s Not That Deep Tour with special guest Adela. A full night of pop spectacle at Xfinity.",
+        "description": "2000s pop-punk favorites Boys Like Girls bring nostalgia and energy to The Met with iDKHOW and Arrows in Action supporting. If \\'The Great Escape\\' and \\'Thunder\\' still hit, this is your show.",
+        "price": "$40+",
+        "vibeTag": "mainstream",
+        "source": "ticketmaster.com / livenation.com",
+        "lat": 39.9681,
+        "lng": -75.1586,
+        "isInsider": False,
+    },
+    {
+        "id": "event-87",
+        "name": "Floetry Presents Say Yes The Tour at The Met",
+        "date": "2026-04-10",
+        "time": "8:00 PM",
+        "venue": "The Met Philadelphia",
+        "address": "858 N. Broad Street, Philadelphia, PA 19130",
+        "neighborhood": "North Broad",
+        "category": "music",
+        "description": "Neo-soul duo Floetry (Marsha Ambrosius and Natalie Stewart) bring their Say Yes Tour to The Met with Raheem DeVaughn. Grown-and-sexy vibes with \\'Say Yes,\\' \\'Floetic,\\' and spoken word poetry. A Philly must-see.",
         "price": "$55+",
-        "vibeTag": "mainstream",
-        "source": "ticketmaster.com / xfinitymobilearena.com",
-        "lat": 39.9012,
-        "lng": -75.1745,
-        "isInsider": False,
+        "vibeTag": "insider",
+        "source": "themetphilly.com",
+        "lat": 39.9681,
+        "lng": -75.1586,
+        "isInsider": True,
     },
     {
-        "id": "event-81",
-        "name": "Endea Owens Jazz at Perelman Theater",
-        "date": "2026-03-28",
+        "id": "event-88",
+        "name": "Nick Offerman: Big Woodchuck at The Met Philadelphia",
+        "date": "2026-04-12",
+        "time": "7:00 PM",
+        "venue": "The Met Philadelphia",
+        "address": "858 N. Broad Street, Philadelphia, PA 19130",
+        "neighborhood": "North Broad",
+        "category": "comedy",
+        "description": "Ron Swanson himself brings his Big Woodchuck tour to The Met. Nick Offerman delivers deadpan humor, woodworking wisdom, and his signature mustachioed charm. An evening of laughs in one of Philly\\'s most stunning venues.",
+        "price": "$45+",
+        "vibeTag": "insider",
+        "source": "ticketmaster.com / axs.com",
+        "lat": 39.9681,
+        "lng": -75.1586,
+        "isInsider": True,
+    },
+    {
+        "id": "event-89",
+        "name": "In Bloom Spring Block Party at Piazza Alta",
+        "date": "2026-04-18",
+        "time": "10:00 AM",
+        "venue": "Piazza Alta Courtyard",
+        "address": "1099 Germantown Avenue, Philadelphia, PA 19123",
+        "neighborhood": "Northern Liberties",
+        "category": "market",
+        "description": "The Northern Liberties Farmers Market kicks off its 2026 season with the In Bloom Spring Block Party. Local vendors, food and drinks, wellness pop-ups, fitness classes, kid-friendly activities, and spring-inspired decor across the Piazza Alta courtyard. The neighborhood\\'s best free Saturday.",
+        "price": "Free",
+        "vibeTag": "chill",
+        "source": "wooderice.com / blackbirdrsvp.com",
+        "lat": 39.9650,
+        "lng": -75.1425,
+        "isInsider": True,
+    },
+    {
+        "id": "event-90",
+        "name": "RAYE -- This Tour May Contain New Music at The Met",
+        "date": "2026-04-19",
+        "time": "8:00 PM",
+        "venue": "The Met Philadelphia",
+        "address": "858 N. Broad Street, Philadelphia, PA 19130",
+        "neighborhood": "North Broad",
+        "category": "music",
+        "description": "British singer-songwriter RAYE brings her genre-bending sound to The Met. After her breakout album \\'My 21st Century Blues\\' swept the BRITs, she\\'s one of the most exciting live acts in the world right now -- raw vocals, orchestral arrangements, and electrifying energy.",
+        "price": "$50+",
+        "vibeTag": "buzzing",
+        "source": "ticketmaster.com / livenation.com",
+        "lat": 39.9681,
+        "lng": -75.1586,
+        "isInsider": True,
+    },
+    {
+        "id": "event-91",
+        "name": "Christian McBride & Edgar Meyer at Perelman Theater",
+        "date": "2026-04-21",
         "time": "8:00 PM",
         "venue": "Perelman Theater at Kimmel Center",
         "address": "300 S. Broad Street, Philadelphia, PA 19102",
         "neighborhood": "Center City",
         "category": "music",
-        "description": "Bassist Endea Owens, known from The Late Show with Stephen Colbert, performs as part of Ensemble Arts\\' acclaimed Jazz Series. An intimate evening of world-class jazz in one of Philly\\'s finest small venues.",
+        "description": "Philly\\'s own jazz bass legend Christian McBride teams up with genre-defying bassist Edgar Meyer for an intimate evening at Perelman Theater. Part of Ensemble Arts\\' acclaimed Jazz Series -- a night of virtuosity and improvisation between two masters.",
         "price": "$35+",
         "vibeTag": "insider",
         "source": "visitphilly.com / ensemblearts.org",
@@ -224,136 +185,85 @@ new_events = [
         "lng": -75.1657,
         "isInsider": True,
     },
-    {
-        "id": "event-82",
-        "name": "Sing Us Home Festival",
-        "date": "2026-05-01 to 2026-05-03",
-        "time": "Various",
-        "venue": "Venice Island Performing Arts Center",
-        "address": "7 Lock Street, Philadelphia, PA 19127",
-        "neighborhood": "Manayunk",
-        "category": "music",
-        "description": "Dave Hause\\'s annual punk rock and acoustic music festival returns for year four on Venice Island. The Menzingers, The Mountain Goats, Augustines (reunion!), and Dave Hause & The Mermaid headline three days of music, local food trucks, craft beer, tattoos, art, and vinyl vendors. One of Philly\\'s best-kept festival secrets.",
-        "price": "$75+ (day pass)",
-        "vibeTag": "underground",
-        "source": "singushomefestival.com / rollingstone.com",
-        "lat": 40.0268,
-        "lng": -75.2258,
-        "isInsider": True,
-    },
-    {
-        "id": "event-83",
-        "name": "NewDad at Union Transfer",
-        "date": "2026-04-26",
-        "time": "8:00 PM",
-        "venue": "Union Transfer",
-        "address": "1026 Spring Garden Street, Philadelphia, PA 19123",
-        "neighborhood": "Spring Garden",
-        "category": "music",
-        "description": "Irish shoegaze/dream pop quartet NewDad have been tearing up festival circuits and blogospheres. Lush walls of guitar, ethereal vocals, and hooks for days. Catch them at Union Transfer before arena tours inevitably follow.",
-        "price": "$22+",
-        "vibeTag": "indie",
-        "source": "concertfix.com",
-        "lat": 39.9615,
-        "lng": -75.1553,
-        "isInsider": True,
-    },
 ]
 
 # ===================================================================
-# 3. ADD NEW HOTSPOTS (starting from spot-58)
+# 3. ADD NEW HOTSPOTS (starting from spot-63)
 # ===================================================================
 
 new_hotspots = [
     {
-        "id": "spot-58",
-        "name": "Huda Burger",
-        "type": "restaurant",
-        "address": "Philadelphia, PA",
-        "neighborhood": "West Philly",
-        "description": "Halal smash burgers making waves across Philly food social media. Crispy, seasoned patties on soft buns with house sauces -- a cult following is already forming. Named one of the best new restaurants by Eater Philly in March 2026.",
-        "vibeTag": "buzzing",
-        "priceRange": "$",
-        "cuisine": "Halal Burgers",
-        "isNew": True,
-        "isInsider": True,
-        "lat": 39.9560,
-        "lng": -75.2010,
-        "source": "philly.eater.com",
-    },
-    {
-        "id": "spot-59",
-        "name": "Cerveau",
-        "type": "restaurant",
-        "address": "Philadelphia, PA 19103",
-        "neighborhood": "Rittenhouse",
-        "description": "Upscale French-inspired restaurant bringing cerebral, technique-driven cuisine to Rittenhouse. A refined menu with seasonal tasting options and an impressive natural wine list. Already generating serious buzz among Philly food media.",
+        "id": "spot-63",
+        "name": "Known Associates",
+        "type": "bar",
+        "address": "941 Spruce Street, Philadelphia, PA 19107",
+        "neighborhood": "Washington Square West",
+        "description": "Chef Christopher Kearse (Forsythia, Michelin-recommended) and designers PS & Daughters transform the former Varga Bar into a European-influenced cocktail bar where food plays a starring role. Expect technique-driven small plates and inventive drinks in a beautifully designed space.",
         "vibeTag": "exclusive",
-        "priceRange": "$$$$",
-        "cuisine": "French",
+        "priceRange": "$$$",
+        "cuisine": "European",
         "isNew": True,
         "isInsider": True,
-        "lat": 39.9505,
-        "lng": -75.1700,
-        "source": "philly.eater.com",
+        "lat": 39.9430,
+        "lng": -75.1570,
+        "source": "inquirer.com",
     },
     {
-        "id": "spot-60",
-        "name": "El Sazon R.D.",
+        "id": "spot-64",
+        "name": "Bengaluru Cafe",
         "type": "restaurant",
-        "address": "Philadelphia, PA",
-        "neighborhood": "North Philadelphia",
-        "description": "Authentic Dominican restaurant serving mangus, mofongos, and stewed meats with bold Caribbean flavors. A neighborhood gem highlighted by Eater Philly as one of the best new spots in the city. Generous portions, family-style vibes.",
-        "vibeTag": "insider",
-        "priceRange": "$",
-        "cuisine": "Dominican",
-        "isNew": True,
-        "isInsider": True,
-        "lat": 39.9850,
-        "lng": -75.1500,
-        "source": "philly.eater.com",
-    },
-    {
-        "id": "spot-61",
-        "name": "Snack Shack at Forest & Main",
-        "type": "restaurant",
-        "address": "Frankford Avenue, Philadelphia, PA 19125",
-        "neighborhood": "Fishtown",
-        "description": "The beloved Forest & Main brewery now has a dedicated food window in Fishtown serving elevated snack bar bites -- smash burgers, loaded fries, and soft pretzels paired with their craft beers. Casual, fun, and perfectly Fishtown.",
+        "address": "Northern Liberties, Philadelphia, PA 19123",
+        "neighborhood": "Northern Liberties",
+        "description": "South Indian cafe bringing dosas, idli, vada, and filter coffee to Northern Liberties. Casual counter-service spot that fills a gap in Philly\\'s Indian food landscape with authentic Bangalore street food flavors.",
         "vibeTag": "chill",
         "priceRange": "$",
+        "cuisine": "South Indian",
+        "isNew": True,
+        "isInsider": True,
+        "lat": 39.9640,
+        "lng": -75.1420,
+        "source": "inquirer.com",
+    },
+    {
+        "id": "spot-65",
+        "name": "The Blue Warbler",
+        "type": "restaurant",
+        "address": "8001 Germantown Avenue, Philadelphia, PA 19118",
+        "neighborhood": "Chestnut Hill",
+        "description": "An all-day bakery-cafe-tavern serving edgy, eclectic comfort food on Germantown Avenue. Coffee in the morning, cocktails at night, and a crowd-sourced community vibe throughout. A welcome addition to Chestnut Hill\\'s dining scene.",
+        "vibeTag": "chill",
+        "priceRange": "$$",
         "cuisine": "American",
         "isNew": True,
         "isInsider": True,
-        "lat": 39.9720,
-        "lng": -75.1330,
-        "source": "philly.eater.com",
+        "lat": 40.0775,
+        "lng": -75.2095,
+        "source": "inquirer.com",
     },
     {
-        "id": "spot-62",
-        "name": "The Grape",
-        "type": "bar",
-        "address": "105 Grape Street, Philadelphia, PA",
-        "neighborhood": "Manayunk",
-        "description": "Neighborhood wine bar on Grape Street (yes, really) with a curated natural wine list, small plates, and a laid-back atmosphere. A welcome addition to the Manayunk bar scene that feels more like a Brooklyn wine bar than a typical Philly spot.",
-        "vibeTag": "chill",
-        "priceRange": "$$",
-        "cuisine": None,
+        "id": "spot-66",
+        "name": "Taste Taco Bar",
+        "type": "restaurant",
+        "address": "300 South Street, Philadelphia, PA 19147",
+        "neighborhood": "South Street",
+        "description": "Indoor/outdoor taco bar from Hi-Def Hospitality on South Street. Occupying the former Jon\\'s Bar & Grille space with a lively patio, creative tacos, and frozen margaritas. A new anchor for the South Street strip.",
+        "vibeTag": "buzzing",
+        "priceRange": "$",
+        "cuisine": "Mexican",
         "isNew": True,
-        "isInsider": True,
-        "lat": 40.0240,
-        "lng": -75.2240,
-        "source": "visitphilly.com",
+        "isInsider": False,
+        "lat": 39.9406,
+        "lng": -75.1490,
+        "source": "inquirer.com",
     },
 ]
 
 # ===================================================================
-# 4. INSERT NEW EVENTS before the closing "];" of events array
+# 4. INSERT NEW DATA
 # ===================================================================
 
 def format_event(e):
-    lines = []
-    lines.append("  {")
+    lines = ["  {"]
     lines.append(f'    id: "{e["id"]}",')
     lines.append(f'    name: "{e["name"]}",')
     lines.append(f'    date: "{e["date"]}",')
@@ -373,8 +283,7 @@ def format_event(e):
     return "\n".join(lines)
 
 def format_hotspot(h):
-    lines = []
-    lines.append("  {")
+    lines = ["  {"]
     lines.append(f'    id: "{h["id"]}",')
     lines.append(f'    name: "{h["name"]}",')
     lines.append(f'    type: "{h["type"]}",')
@@ -384,7 +293,7 @@ def format_hotspot(h):
     lines.append(f'    vibeTag: "{h["vibeTag"]}",')
     lines.append(f'    priceRange: "{h["priceRange"]}",')
     if h["cuisine"] is None:
-        lines.append(f'    cuisine: null,')
+        lines.append('    cuisine: null,')
     else:
         lines.append(f'    cuisine: "{h["cuisine"]}",')
     lines.append(f'    isNew: {"true" if h["isNew"] else "false"},')
@@ -395,93 +304,55 @@ def format_hotspot(h):
     lines.append("  },")
     return "\n".join(lines)
 
-events_end_marker = "\n];\n\nexport const hotspots"
-events_insert = "\n" + "\n".join(format_event(e) for e in new_events) + "\n"
-content = content.replace(events_end_marker, events_insert + events_end_marker)
-print(f"\nAdded {len(new_events)} new events (event-72 through event-83)")
+events_end = "\n];\n\nexport const hotspots"
+content = content.replace(events_end, "\n" + "\n".join(format_event(e) for e in new_events) + "\n" + events_end)
+print(f"\nAdded {len(new_events)} new events (event-84 through event-91)")
 
-hotspots_end_marker = "\n];\n\nexport const influencers"
-hotspots_insert = "\n" + "\n".join(format_hotspot(h) for h in new_hotspots) + "\n"
-content = content.replace(hotspots_end_marker, hotspots_insert + hotspots_end_marker)
-print(f"Added {len(new_hotspots)} new hotspots (spot-58 through spot-62)")
+hotspots_end = "\n];\n\nexport const influencers"
+content = content.replace(hotspots_end, "\n" + "\n".join(format_hotspot(h) for h in new_hotspots) + "\n" + hotspots_end)
+print(f"Added {len(new_hotspots)} new hotspots (spot-63 through spot-66)")
 
 # ===================================================================
 # 5. UPDATE INFLUENCER RECENT PICKS
 # ===================================================================
 
-# Wooder Ice -- add Diversitech Day 1 coverage (it started today Mar 19)
-wooder_handle_marker = 'handle: "@wooder_ice"'
-wooder_section_idx = content.find(wooder_handle_marker)
-if wooder_section_idx != -1:
-    wooder_recent_idx = content.find("recentPicks: [", wooder_section_idx)
-    if wooder_recent_idx != -1:
-        insert_after = wooder_recent_idx + len("recentPicks: [")
-        wooder_new_pick = """
-      { name: "Diversitech 2026 Day 1", type: "event", neighborhood: "Center City", quote: "Diversitech 2026 kicked off today -- Philly\'s most inclusive tech conference. Three days of panels, networking, and celebrating diverse founders and creators. See you there.", date: "March 19, 2026" },"""
-        content = content[:insert_after] + wooder_new_pick + content[insert_after:]
-        print("Updated Wooder Ice with 1 new pick (Diversitech Day 1)")
-else:
-    print("WARNING: Could not find Wooder Ice recentPicks marker")
+def add_pick(content, handle, pick_text, label):
+    marker = f'handle: "{handle}"'
+    idx = content.find(marker)
+    if idx != -1:
+        rp_idx = content.find("recentPicks: [", idx)
+        if rp_idx != -1:
+            insert_at = rp_idx + len("recentPicks: [")
+            content = content[:insert_at] + "\n" + pick_text + content[insert_at:]
+            print(f"Updated {label}")
+    else:
+        print(f"WARNING: Could not find {handle}")
+    return content
 
-# FeedingTimeTV -- add new food content
-feedingtv_picks_marker = 'handle: "@feedingtimetv"'
-feedingtv_section_idx = content.find(feedingtv_picks_marker)
-if feedingtv_section_idx != -1:
-    feedingtv_recent_idx = content.find("recentPicks: [", feedingtv_section_idx)
-    if feedingtv_recent_idx != -1:
-        insert_after = feedingtv_recent_idx + len("recentPicks: [")
-        new_pick = """
-      { name: "Huda Burger", type: "restaurant", neighborhood: "West Philly", quote: "Halal smash burgers that are absolutely crushing it right now. Crispy edges, perfectly seasoned. Get here before the line wraps around the block.", date: "March 18, 2026" },"""
-        content = content[:insert_after] + new_pick + content[insert_after:]
-        print("Updated FeedingTimeTV with 1 new pick (Huda Burger)")
+# Wooder Ice -- In Bloom Block Party coverage, NCAA March Madness in Philly
+content = add_pick(content, "@wooder_ice",
+    '      { name: "NCAA March Madness in Philly", type: "event", neighborhood: "South Philly", quote: "March Madness is HERE. Philly is hosting first and second round games at Xfinity Mobile Arena this weekend -- one of the most electric sports weekends of the year. The energy is unmatched.", date: "March 20, 2026" },',
+    "Wooder Ice (NCAA March Madness)")
 
-# Cass Matthews -- add new pick
-cass_picks_marker = 'handle: "@cass_andthecity"'
-cass_section_idx = content.find(cass_picks_marker)
-if cass_section_idx != -1:
-    cass_recent_idx = content.find("recentPicks: [", cass_section_idx)
-    if cass_recent_idx != -1:
-        insert_after = cass_recent_idx + len("recentPicks: [")
-        new_pick = """
-      { name: "Ministry of Awe", type: "event", neighborhood: "Old City", quote: "Finally checked out Ministry of Awe in Old City -- the projection-mapped rooms are stunning. Perfect date night or creative inspiration. Book ahead.", date: "March 18, 2026" },"""
-        content = content[:insert_after] + new_pick + content[insert_after:]
-        print("Updated Cass Matthews with 1 new pick (Ministry of Awe)")
+# FeedingTimeTV -- new restaurant coverage
+content = add_pick(content, "@feedingtimetv",
+    '      { name: "Bengaluru Cafe", type: "restaurant", neighborhood: "Northern Liberties", quote: "South Indian spot in NoLibs serving legit dosas, idli, and filter coffee. Fills a huge gap in the Philly food scene. The masala dosa is the move.", date: "March 19, 2026" },',
+    "FeedingTimeTV (Bengaluru Cafe)")
 
-# Philly Food Ladies -- add new pick
-ladies_picks_marker = 'handle: "@phillyfoodladies"'
-ladies_section_idx = content.find(ladies_picks_marker)
-if ladies_section_idx != -1:
-    ladies_recent_idx = content.find("recentPicks: [", ladies_section_idx)
-    if ladies_recent_idx != -1:
-        insert_after = ladies_recent_idx + len("recentPicks: [")
-        new_pick = """
-      { name: "Cerveau", type: "restaurant", neighborhood: "Rittenhouse", quote: "The new French spot in Rittenhouse is giving everything. Technique-driven plates, beautiful presentation, and the natural wine list is incredible.", date: "March 18, 2026" },"""
-        content = content[:insert_after] + new_pick + content[insert_after:]
-        print("Updated Philly Food Ladies with 1 new pick (Cerveau)")
+# Josh Moore -- food content
+content = add_pick(content, "@josheatsphilly",
+    "      { name: \"Emilia\", type: \"restaurant\", neighborhood: \"Kensington\", quote: \"Greg Vernick's Italian spot in Kensington is living up to the hype. House-made pasta, live-fire cooking, and a neighborhood trattoria vibe that feels both elevated and approachable.\", date: \"March 19, 2026\" },",
+    "Josh Moore (Emilia)")
 
-# Fueled on Philly -- add new pick
-fueled_picks_marker = 'handle: "@fueledonphilly"'
-fueled_section_idx = content.find(fueled_picks_marker)
-if fueled_section_idx != -1:
-    fueled_recent_idx = content.find("recentPicks: [", fueled_section_idx)
-    if fueled_recent_idx != -1:
-        insert_after = fueled_recent_idx + len("recentPicks: [")
-        new_pick = """
-      { name: "Snack Shack at Forest & Main", type: "restaurant", neighborhood: "Fishtown", quote: "Forest & Main\\'s new food window in Fishtown -- smash burgers and loaded fries to go with your craft beer. This is what we needed.", date: "March 18, 2026" },"""
-        content = content[:insert_after] + new_pick + content[insert_after:]
-        print("Updated Fueled on Philly with 1 new pick (Snack Shack)")
+# Kory Aversa -- scene coverage
+content = add_pick(content, "@koryaversa",
+    "      { name: \"Known Associates\", type: \"bar\", neighborhood: \"Washington Square West\", quote: \"The Forsythia team's new cocktail bar at the old Varga Bar space is stunning. European-influenced drinks, technique-driven food, gorgeous design. Washington Square just got a major upgrade.\", date: \"March 19, 2026\" },",
+    "Kory Aversa (Known Associates)")
 
-# Djour Philly -- add new pick
-djour_picks_marker = 'handle: "@djour.philly"'
-djour_section_idx = content.find(djour_picks_marker)
-if djour_section_idx != -1:
-    djour_recent_idx = content.find("recentPicks: [", djour_section_idx)
-    if djour_recent_idx != -1:
-        insert_after = djour_recent_idx + len("recentPicks: [")
-        new_pick = """
-      { name: "The Grape", type: "bar", neighborhood: "Manayunk", quote: "Natural wine bar on Grape Street in Manayunk. Cozy vibes, great list, perfect for a chill night out.", date: "March 18, 2026" },"""
-        content = content[:insert_after] + new_pick + content[insert_after:]
-        print("Updated Djour Philly with 1 new pick (The Grape)")
+# SwagFoodPhilly -- food finds
+content = add_pick(content, "@swagfoodphilly",
+    '      { name: "Taste Taco Bar", type: "restaurant", neighborhood: "South Street", quote: "New taco spot on South Street with a solid patio. Creative tacos and frozen margs -- exactly what South Street needed.", date: "March 19, 2026" },',
+    "SwagFoodPhilly (Taste Taco Bar)")
 
 # ===================================================================
 # 6. DEDUPLICATION CHECK
@@ -490,58 +361,32 @@ if djour_section_idx != -1:
 print("\n=== DEDUPLICATION CHECK ===")
 dupes_removed = 0
 
-# Extract all event names for dedup
-event_entries = re.findall(
-    r'id:\s*"(event-\d+)".*?name:\s*"([^"]+)".*?venue:\s*"([^"]*)"',
-    content, re.DOTALL
-)
-
-# Check for duplicate event names (case-insensitive)
+# Event name dedup
+event_entries = re.findall(r'id:\s*"(event-\d+)".*?name:\s*"([^"]+)"', content, re.DOTALL)
 seen_events = {}
 event_dupes = []
-for eid, ename, venue in event_entries:
+for eid, ename in event_entries:
     key = ename.lower().strip()
     if key in seen_events:
         event_dupes.append((eid, ename, seen_events[key]))
     else:
         seen_events[key] = (eid, ename)
 
-# Near-duplicate check: same venue + one name contains the other
-for i, (eid1, ename1, venue1) in enumerate(event_entries):
-    for j, (eid2, ename2, venue2) in enumerate(event_entries):
-        if i >= j:
-            continue
-        if venue1.lower() == venue2.lower() and venue1:
-            n1 = re.sub(r'\s+', ' ', ename1.lower().replace("the ", "").strip())
-            n2 = re.sub(r'\s+', ' ', ename2.lower().replace("the ", "").strip())
-            # Only flag if one name is a strong substring of the other (>50% overlap)
-            if (n1 in n2 or n2 in n1) and abs(len(n1) - len(n2)) < min(len(n1), len(n2)):
-                pair = tuple(sorted([eid1, eid2]))
-                already = any(d[0] in pair for d in event_dupes)
-                if not already:
-                    event_dupes.append((eid2, ename2, (eid1, ename1)))
-
-print(f"Event duplicates found: {len(event_dupes)}")
-for eid, ename, original in event_dupes:
-    print(f"  - {eid}: '{ename}' duplicates {original}")
-
-for eid, ename, _ in event_dupes:
+print(f"Event name duplicates: {len(event_dupes)}")
+for eid, ename, orig in event_dupes:
+    print(f"  - {eid}: '{ename}' duplicates {orig}")
     pattern = re.compile(
         r'  \{\s*\n\s*id:\s*"' + re.escape(eid) + r'".*?\n\s*isInsider:\s*(?:true|false),?\s*\n\s*\},?\n',
         re.DOTALL
     )
-    match = pattern.search(content)
-    if match:
-        content = content[:match.start()] + content[match.end():]
+    m = pattern.search(content)
+    if m:
+        content = content[:m.start()] + content[m.end():]
         dupes_removed += 1
-        print(f"  Removed duplicate event: {eid}")
+        print(f"  Removed {eid}")
 
-# Hotspot dedup: exact name matches only (avoid address false positives)
-spot_entries = re.findall(
-    r'id:\s*"(spot-\d+)".*?name:\s*"([^"]+)"',
-    content, re.DOTALL
-)
-
+# Hotspot name dedup
+spot_entries = re.findall(r'id:\s*"(spot-\d+)".*?name:\s*"([^"]+)"', content, re.DOTALL)
 seen_spots = {}
 spot_dupes = []
 for sid, sname in spot_entries:
@@ -551,36 +396,34 @@ for sid, sname in spot_entries:
     else:
         seen_spots[key] = (sid, sname)
 
-print(f"Hotspot duplicates found: {len(spot_dupes)}")
-for sid, sname, original in spot_dupes:
-    print(f"  - {sid}: '{sname}' duplicates {original}")
-
-for sid, sname, _ in spot_dupes:
+print(f"Hotspot name duplicates: {len(spot_dupes)}")
+for sid, sname, orig in spot_dupes:
+    print(f"  - {sid}: '{sname}' duplicates {orig}")
     pattern = re.compile(
         r'  \{\s*\n\s*id:\s*"' + re.escape(sid) + r'".*?\n\s*source:\s*"[^"]*",?\s*\n\s*\},?\n',
         re.DOTALL
     )
-    match = pattern.search(content)
-    if match:
-        content = content[:match.start()] + content[match.end():]
+    m = pattern.search(content)
+    if m:
+        content = content[:m.start()] + content[m.end():]
         dupes_removed += 1
-        print(f"  Removed duplicate hotspot: {sid}")
+        print(f"  Removed {sid}")
 
 # Verify unique IDs
 all_ids = re.findall(r'id:\s*"([^"]+)"', content)
 id_counts = {}
-for id_val in all_ids:
-    id_counts[id_val] = id_counts.get(id_val, 0) + 1
+for i in all_ids:
+    id_counts[i] = id_counts.get(i, 0) + 1
 dup_ids = {k: v for k, v in id_counts.items() if v > 1}
 if dup_ids:
-    print(f"WARNING: Duplicate IDs found: {dup_ids}")
+    print(f"WARNING: Duplicate IDs: {dup_ids}")
 else:
-    print("All IDs are unique -- passed")
+    print("All IDs unique -- passed")
 
 print(f"\nTotal duplicates removed: {dupes_removed}")
 
 # ===================================================================
-# 7. WRITE THE FILE
+# 7. WRITE FILE
 # ===================================================================
 
 with open(DATA_FILE, "w") as f:
@@ -588,28 +431,27 @@ with open(DATA_FILE, "w") as f:
 
 final_events = len(re.findall(r'id:\s*"event-\d+"', content))
 final_spots = len(re.findall(r'id:\s*"spot-\d+"', content))
-final_influencers = len(re.findall(r'id:\s*"influencer-\d+"', content))
+final_inf = len(re.findall(r'id:\s*"influencer-\d+"', content))
 
 print(f"\n=== FINAL COUNTS ===")
 print(f"Events: {final_events}")
 print(f"Hotspots: {final_spots}")
-print(f"Influencers: {final_influencers}")
-print(f"File written successfully!")
+print(f"Influencers: {final_inf}")
 
 summary = {
     "date": TODAY,
-    "run_number": 3,
+    "run_number": 4,
     "events_added": len(new_events),
     "hotspots_added": len(new_hotspots),
     "expired_removed": len(expired_ids),
     "duplicates_removed": dupes_removed,
-    "influencer_updates": 6,
+    "influencer_updates": 5,
     "final_events": final_events,
     "final_hotspots": final_spots,
     "new_event_names": [e["name"] for e in new_events],
     "new_hotspot_names": [h["name"] for h in new_hotspots],
-    "expired_names": [f"{ename}" for _, ename, _ in expired_ids],
+    "expired_names": [ename for _, ename, _ in expired_ids],
 }
 with open("update-summary.json", "w") as f:
     json.dump(summary, f, indent=2)
-print("\nSummary written to update-summary.json")
+print("Summary written")
