@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-"""PHL Underground nightly data refresh — Run #5 (March 21, 2026)"""
+"""PHL Underground nightly data refresh -- Run #6 (March 22, 2026)"""
 
 import re
-import json
-from datetime import datetime
 
-TODAY = "2026-03-21"
+TODAY = "2026-03-22"
 DATA_FILE = "client/src/data/philly-data.ts"
 
 with open(DATA_FILE, "r") as f:
@@ -21,7 +19,6 @@ def get_last_date(date_str):
 events_match = re.search(r'(export const events: PhillyEvent\[\] = \[)(.*?)(\];)', content, re.DOTALL)
 events_text = events_match.group(2)
 
-# Split into individual event blocks
 event_blocks = re.findall(r'(\s*\{[^{}]*?\})', events_text)
 expired_count = 0
 kept_events = []
@@ -39,182 +36,182 @@ for block in event_blocks:
 print(f"\nExpired events removed: {expired_count}")
 
 # ────────────────────────────────────────────────
-# 2. New events to add (starting at event-92)
+# 2. New events (starting at event-102)
 # ────────────────────────────────────────────────
 new_events = [
     {
-        "id": "event-92",
-        "name": "Natalie Jane at Underground Arts",
-        "date": "2026-03-22",
+        "id": "event-102",
+        "name": "76ers Homecoming Night vs. Chicago Bulls",
+        "date": "2026-03-25",
         "time": "7:00 PM",
-        "venue": "Underground Arts",
-        "address": "1200 Callowhill St, Philadelphia, PA 19123",
-        "neighborhood": "Callowhill",
-        "category": "music",
-        "description": "Pop singer-songwriter Natalie Jane brings her rising catalog of viral hits to Underground Arts. Expect intimate vocals, confessional lyrics, and an energized crowd in one of Philly's best indie venues.",
-        "price": "$25+",
-        "vibeTag": "insider",
-        "source": "undergroundarts.org / shazam.com",
-        "lat": 39.9596,
-        "lng": -75.1582,
-        "isInsider": True,
-    },
-    {
-        "id": "event-93",
-        "name": "Hanabie at Theatre of Living Arts",
-        "date": "2026-03-21",
-        "time": "7:00 PM",
-        "venue": "Theatre of Living Arts",
-        "address": "334 South St, Philadelphia, PA 19147",
-        "neighborhood": "South Street",
-        "category": "music",
-        "description": "Japanese metalcore/kawaii-core sensation Hanabie brings their wildly energetic and genre-bending live show to South Street's iconic TLA. If you like mosh pits mixed with J-pop aesthetics, this is your night.",
-        "price": "$25+",
-        "vibeTag": "insider",
-        "source": "seatgeek.com",
-        "lat": 39.9424,
-        "lng": -75.1491,
-        "isInsider": True,
-    },
-    {
-        "id": "event-94",
-        "name": "Flannel 90s Night at Brooklyn Bowl Philadelphia",
-        "date": "2026-03-21",
-        "time": "8:00 PM",
-        "venue": "Brooklyn Bowl Philadelphia",
-        "address": "1009 Canal St, Philadelphia, PA 19123",
-        "neighborhood": "Northern Liberties",
-        "category": "nightlife",
-        "description": "Flannel is a 21+ 90s tribute night with bowling, drinks, and all the grunge, alt-rock, and hip-hop of the decade. Perfect Saturday night out at Brooklyn Bowl — think Pearl Jam, Nirvana, TLC, and Biggie all in one set.",
-        "price": "$15+",
-        "vibeTag": "local-fav",
-        "source": "seatgeek.com",
-        "lat": 39.9646,
-        "lng": -75.1377,
+        "venue": "Xfinity Mobile Arena",
+        "address": "3601 S. Broad Street, Philadelphia, PA 19148",
+        "neighborhood": "South Philly",
+        "category": "sports",
+        "description": "The 76ers celebrate Homecoming Night at Xfinity Mobile Arena against the Bulls as the playoff race heats up. Part of the 25th anniversary celebration of the 2001 Eastern Conference Champions, with the first 2,001 fans scoring free gear. One of the season's final themed nights.",
+        "price": "$40+",
+        "vibeTag": "mainstream",
+        "source": "visitphilly.com / nba.com",
+        "lat": 39.9012,
+        "lng": -75.1745,
         "isInsider": False,
     },
     {
-        "id": "event-95",
-        "name": "PHS Pop-Up Garden Grand Opening — Manayunk & South Street",
-        "date": "2026-03-27",
-        "time": "All Day",
-        "venue": "PHS Pop-Up Gardens",
-        "address": "Manayunk & South Street locations, Philadelphia, PA",
-        "neighborhood": "Manayunk / South Street",
+        "id": "event-103",
+        "name": "Southeast Asian Market Opening Day at FDR Park",
+        "date": "2026-04-04",
+        "time": "10:00 AM - 5:00 PM",
+        "venue": "FDR Park",
+        "address": "Pattison Ave & S. Broad St, Philadelphia, PA 19148",
+        "neighborhood": "South Philly",
         "category": "food-drink",
-        "description": "The Pennsylvania Horticultural Society's beloved pop-up beer gardens kick off their 2026 season with a grand opening at both Manayunk and South Street. Expect boardwalk-style eats, frozen cocktails, and repurposed Flower Show plants. Manayunk features fried clams and the Gritty Margarita; South Street debuts sticky chai pretzel bites and Jamaican jerk wings.",
+        "description": "The nationally renowned Southeast Asian Market returns for its 2026 season with 80+ vendors serving the best Lao, Khmer, Thai, Vietnamese, and Indonesian cuisine in the city. Cash recommended (no ATM on-site). This outdoor market runs Sundays through fall and is an absolute Philly insider must-visit.",
         "price": "Free entry",
         "vibeTag": "insider",
-        "source": "axios.com / phs.org",
-        "lat": 40.0264,
-        "lng": -75.2255,
+        "source": "fdrseamarket.com / visitphilly.com",
+        "lat": 39.9035,
+        "lng": -75.1750,
         "isInsider": True,
     },
     {
-        "id": "event-96",
-        "name": "Obscura at Underground Arts",
-        "date": "2026-03-23",
-        "time": "7:00 PM",
-        "venue": "Underground Arts",
-        "address": "1200 Callowhill St, Philadelphia, PA 19123",
-        "neighborhood": "Callowhill",
-        "category": "music",
-        "description": "German technical death metal legends Obscura play Underground Arts on their 2026 tour. A must for metal heads — expect blistering guitar work, complex time signatures, and a packed underground crowd.",
-        "price": "$25+",
-        "vibeTag": "insider",
-        "source": "undergroundarts.org",
-        "lat": 39.9596,
-        "lng": -75.1582,
-        "isInsider": True,
-    },
-    {
-        "id": "event-97",
-        "name": "Rebirth Brass Band at Underground Arts",
-        "date": "2026-03-26",
-        "time": "8:00 PM",
-        "venue": "Underground Arts",
-        "address": "1200 Callowhill St, Philadelphia, PA 19123",
-        "neighborhood": "Callowhill",
-        "category": "music",
-        "description": "New Orleans legends Rebirth Brass Band bring their Grammy-winning funk, jazz, and second-line grooves to Underground Arts. One of the most joyful live music experiences you'll find anywhere — guaranteed to make you move.",
-        "price": "$30+",
-        "vibeTag": "insider",
-        "source": "undergroundarts.org",
-        "lat": 39.9596,
-        "lng": -75.1582,
-        "isInsider": True,
-    },
-    {
-        "id": "event-98",
-        "name": "City Wide: A Refined Whiskey & Wine Experience at The Pyramid Club",
-        "date": "2026-03-25",
-        "time": "6:00 PM",
-        "venue": "The Pyramid Club",
-        "address": "1735 Market St, 52nd Floor, Philadelphia, PA 19103",
-        "neighborhood": "Center City",
+        "id": "event-104",
+        "name": "Dine Latino Restaurant Week: Spring Edition",
+        "date": "2026-04-06 to 2026-04-12",
+        "time": "Varies",
+        "venue": "Participating restaurants citywide",
+        "address": "Various locations, Philadelphia, PA",
+        "neighborhood": "Citywide",
         "category": "food-drink",
-        "description": "Sip premium whiskeys and curated wines 52 floors above Philadelphia at the Pyramid Club. An upscale tasting event with panoramic skyline views, live entertainment, and a dressed-up Philly crowd. Insider networking meets refined indulgence.",
-        "price": "$65+",
-        "vibeTag": "insider",
-        "source": "eventbrite.com",
-        "lat": 39.9536,
-        "lng": -75.1689,
-        "isInsider": True,
-    },
-    {
-        "id": "event-99",
-        "name": "Seeking Profit & Power at Independence Seaport Museum",
-        "date": "2026-03-20 to 2027-01-01",
-        "time": "10:00 AM - 5:00 PM",
-        "venue": "Independence Seaport Museum",
-        "address": "211 S Christopher Columbus Blvd, Philadelphia, PA 19106",
-        "neighborhood": "Penn's Landing",
-        "category": "culture",
-        "description": "A brand-new exhibition exploring how America built its economy after the Revolution through trade with China. Features 150 rarely seen artifacts revealing how international commerce shaped the young nation into a global superpower. A Philly 250 Semiquincentennial highlight.",
-        "price": "$18",
+        "description": "Dine Latino Restaurant Week celebrates Philadelphia's vibrant Latin food scene with special prix-fixe menus and promotions at participating restaurants across the city. Explore cuisines from Mexico, Puerto Rico, Colombia, Peru, and beyond at some of Philly's best Latin-owned eateries.",
+        "price": "Varies",
         "vibeTag": "local-fav",
         "source": "visitphilly.com",
-        "lat": 39.9451,
-        "lng": -75.1416,
+        "lat": 39.9526,
+        "lng": -75.1652,
         "isInsider": False,
     },
     {
-        "id": "event-100",
-        "name": "Manayunk StrEAT Food Festival",
-        "date": "2026-04-19",
-        "time": "11:00 AM - 5:00 PM",
-        "venue": "Main Street Manayunk",
-        "address": "Main Street, Manayunk, Philadelphia, PA 19127",
-        "neighborhood": "Manayunk",
+        "id": "event-105",
+        "name": "Philly Otaku Fest at Pennsylvania Convention Center",
+        "date": "2026-04-10 to 2026-04-12",
+        "time": "10:00 AM - 6:00 PM",
+        "venue": "Pennsylvania Convention Center",
+        "address": "1101 Arch St, Philadelphia, PA 19107",
+        "neighborhood": "Center City",
+        "category": "culture",
+        "description": "Philadelphia's anime, manga, and Japanese pop culture convention returns to the Convention Center. Cosplay contests, artist alley, vendor hall, panels, and screenings. A haven for the city's growing otaku community.",
+        "price": "$30+",
+        "vibeTag": "insider",
+        "source": "phillyfestivals.org",
+        "lat": 39.9543,
+        "lng": -75.1596,
+        "isInsider": True,
+    },
+    {
+        "id": "event-106",
+        "name": "Philly Cocktail Fest",
+        "date": "2026-04-11",
+        "time": "1:00 PM - 5:00 PM",
+        "venue": "TBD",
+        "address": "Philadelphia, PA",
+        "neighborhood": "Philadelphia",
         "category": "food-drink",
-        "description": "Philly's biggest food truck festival takes over historic Main Street in Manayunk with dozens of top vendors, live music on two stages, and all-day eating. Featuring Cousins Maine Lobster, Cactus Cantina, Aunt Dee's Pound Cake, and more. Rain or shine.",
+        "description": "The city's premier cocktail festival showcasing Philadelphia's booming bar scene. Sample craft cocktails from the city's top bartenders, learn about spirits, and discover why Philly has become one of the East Coast's best drinking destinations.",
+        "price": "$50+",
+        "vibeTag": "insider",
+        "source": "phillyfestivals.org",
+        "lat": 39.9526,
+        "lng": -75.1652,
+        "isInsider": True,
+    },
+    {
+        "id": "event-107",
+        "name": "Flavors on the Avenue -- East Passyunk Spring Fest",
+        "date": "2026-04-26",
+        "time": "12:00 PM - 5:00 PM",
+        "venue": "East Passyunk Avenue",
+        "address": "East Passyunk Ave (Broad to Dickinson), Philadelphia, PA 19148",
+        "neighborhood": "South Philly",
+        "category": "food-drink",
+        "description": "South Philly comes alive during the annual Flavors on the Avenue fest, bringing East Passyunk's top restaurants together for a five-block outdoor food extravaganza. Free to attend, pay-as-you-go eating from acclaimed neighborhood restaurants plus craft market, live music, seasonal cocktails, and kid-friendly activities.",
         "price": "Free entry",
         "vibeTag": "local-fav",
-        "source": "manayunk.com / seanelstone.com",
-        "lat": 40.0259,
-        "lng": -75.2257,
+        "source": "visitphilly.com / audacy.com",
+        "lat": 39.9271,
+        "lng": -75.1614,
         "isInsider": False,
     },
     {
-        "id": "event-101",
-        "name": "Caiola at Underground Arts",
-        "date": "2026-03-27",
-        "time": "8:00 PM",
-        "venue": "Underground Arts",
-        "address": "1200 Callowhill St, Philadelphia, PA 19123",
-        "neighborhood": "Callowhill",
+        "id": "event-108",
+        "name": "Festival of Colors at Philadelphia Zoo",
+        "date": "2026-04-25",
+        "time": "11:30 AM - 3:30 PM",
+        "venue": "Philadelphia Zoo",
+        "address": "3400 W Girard Ave, Philadelphia, PA 19104",
+        "neighborhood": "West Philly",
+        "category": "culture",
+        "description": "The nation's first zoo celebrates spring with the Festival of Colors, presented with the Council of Indian Organizations. A day of Indian music, dancing, kids activities, food, and art featuring artists from Philadelphia's Indian-American community. A unique cultural celebration in a beautiful setting.",
+        "price": "Zoo admission",
+        "vibeTag": "local-fav",
+        "source": "visitphilly.com",
+        "lat": 39.9710,
+        "lng": -75.1955,
+        "isInsider": False,
+    },
+    {
+        "id": "event-109",
+        "name": "Free Throw at Union Transfer",
+        "date": "2026-04-18",
+        "time": "7:30 PM",
+        "venue": "Union Transfer",
+        "address": "1026 Spring Garden St, Philadelphia, PA 19123",
+        "neighborhood": "Spring Garden",
         "category": "music",
-        "description": "Rising indie artist Caiola performs at Underground Arts. A freshly announced show that's generating buzz in Philly's indie music scene — catch them before they blow up.",
+        "description": "Emo-punk favorites Free Throw bring their cathartic, sing-along anthems to Union Transfer. A perfect midsize venue show for fans of the Midwest emo revival scene. Expect crowd surfers, heartfelt lyrics, and a packed room.",
         "price": "$20+",
         "vibeTag": "insider",
-        "source": "undergroundarts.org",
-        "lat": 39.9596,
-        "lng": -75.1582,
+        "source": "concertfix.com / utphilly.com",
+        "lat": 39.9614,
+        "lng": -75.1551,
         "isInsider": True,
+    },
+    {
+        "id": "event-110",
+        "name": "Dining Out for Life Philadelphia",
+        "date": "2026-04-16",
+        "time": "All Day",
+        "venue": "Participating restaurants citywide",
+        "address": "Various locations, Philadelphia, PA",
+        "neighborhood": "Citywide",
+        "category": "food-drink",
+        "description": "Dine out and do good -- the 36th annual Dining Out for Life benefits Action Wellness with participating restaurants donating a portion of sales. Dozens of Philly eateries join in, including Good Dog Bar, Jack's Firehouse, Urban Village Brewing, and all 16 Stephen Starr restaurants. Eat well, support a great cause.",
+        "price": "Varies",
+        "vibeTag": "local-fav",
+        "source": "visitphilly.com",
+        "lat": 39.9526,
+        "lng": -75.1652,
+        "isInsider": False,
+    },
+    {
+        "id": "event-111",
+        "name": "South 9th Street Italian Market Festival",
+        "date": "2026-05-16 to 2026-05-17",
+        "time": "10:00 AM - 5:00 PM",
+        "venue": "9th Street Italian Market",
+        "address": "S 9th Street, Philadelphia, PA 19147",
+        "neighborhood": "South Philly",
+        "category": "food-drink",
+        "description": "One of Philadelphia's most popular events: seven city blocks of the Italian Market transform into a celebration of culture, gastronomy, art, and music. Over 100 vendors showcase a range of cuisines and beverages, plus live music, local artists, and crafters. A true Philly institution.",
+        "price": "Free entry",
+        "vibeTag": "local-fav",
+        "source": "italianmarketphilly.org",
+        "lat": 39.9381,
+        "lng": -75.1581,
+        "isInsider": False,
     },
 ]
 
-# Check for duplicates against existing event names
+# Check for duplicates against existing
 existing_event_names = set()
 for block in kept_events:
     nm = re.search(r'name:\s*"([^"]*)"', block)
@@ -231,108 +228,76 @@ for ev in new_events:
 print(f"\nNew events to add: {len(actually_new_events)}")
 
 # ────────────────────────────────────────────────
-# 3. New hotspots to add (starting at spot-67)
+# 3. New hotspots (starting at spot-73)
 # ────────────────────────────────────────────────
 new_hotspots = [
     {
-        "id": "spot-67",
-        "name": "Liquorette",
+        "id": "spot-73",
+        "name": "Fermentery Form",
         "type": "bar",
-        "address": "255 S 16th St (above WineDive), Philadelphia, PA 19102",
+        "address": "1700 N Palethorp St, Philadelphia, PA 19122",
+        "neighborhood": "Kensington",
+        "description": "Tucked down an unassuming alley in Kensington, this unconventional microbrewery is one of Philly's most unique hidden gems. Wild-fermented beers, natural wines, and an intimate, off-the-grid atmosphere that feels like a well-kept secret. A true insider destination for craft beer devotees.",
+        "vibeTag": "insider",
+        "priceRange": "$$",
+        "cuisine": "craft beer / natural wine",
+        "isNew": True,
+        "isInsider": True,
+        "lat": 39.9784,
+        "lng": -75.1380,
+        "source": "phillyprgirl.com / yelp.com",
+    },
+    {
+        "id": "spot-74",
+        "name": "Carolyn's Vietnamese",
+        "type": "restaurant",
+        "address": "Philadelphia, PA",
+        "neighborhood": "Philadelphia",
+        "description": "A buzzy new Vietnamese restaurant that's been generating attention from Philly's food influencer community. Part of a wave of exciting independent openings bringing diverse flavors to the city's constantly evolving dining scene.",
+        "vibeTag": "insider",
+        "priceRange": "$$",
+        "cuisine": "Vietnamese",
+        "isNew": True,
+        "isInsider": True,
+        "lat": 39.9526,
+        "lng": -75.1652,
+        "source": "instagram.com / phillymag.com",
+    },
+    {
+        "id": "spot-75",
+        "name": "Schmaltz",
+        "type": "restaurant",
+        "address": "Philadelphia, PA",
+        "neighborhood": "Philadelphia",
+        "description": "A new concept specializing in Jewish comfort food with a focus on latkes and other classics. Part of the exciting 2026 wave of Philly openings from passionate local food entrepreneurs, generating strong social media buzz among Philly food creators.",
+        "vibeTag": "insider",
+        "priceRange": "$$",
+        "cuisine": "Jewish deli / comfort food",
+        "isNew": True,
+        "isInsider": True,
+        "lat": 39.9526,
+        "lng": -75.1652,
+        "source": "instagram.com / inquirer.com",
+    },
+    {
+        "id": "spot-76",
+        "name": "O'Morrey's",
+        "type": "bar",
+        "address": "1720 Sansom St, Philadelphia, PA 19103",
         "neighborhood": "Rittenhouse",
-        "description": "A luxury, European-style cocktail bar from the WineDive team (Heather Annechiarico & Chris Fetfatzes) opening above the beloved Rittenhouse wine bar. Expect refined cocktails, intimate vibes, and the same hospitality that made WineDive a neighborhood institution.",
+        "description": "An upcoming cocktail bar from the Ripplewood/Izzy's team (Biff Gottehrer and Kenjiro Omori) in the former Genji space. The name is a playful rendering of Omori's surname. Expect the same polished cocktail craft that made Ripplewood a whiskey destination, now in Center City.",
         "vibeTag": "insider",
         "priceRange": "$$$",
         "cuisine": "cocktails",
         "isNew": True,
         "isInsider": True,
-        "lat": 39.9484,
-        "lng": -75.1688,
-        "source": "phillymag.com / seanelstone.com",
-    },
-    {
-        "id": "spot-68",
-        "name": "Pig & Khao",
-        "type": "restaurant",
-        "address": "Former Martha space, Kensington, Philadelphia, PA 19125",
-        "neighborhood": "Kensington",
-        "description": "NYC's acclaimed Thai-Filipino restaurant Pig & Khao is opening in the former Martha space in Kensington. Chef Leah Cohen brings bold Southeast Asian flavors — think lemongrass sausage, kare kare, and fish sauce wings — to one of Philly's hottest food corridors.",
-        "vibeTag": "insider",
-        "priceRange": "$$",
-        "cuisine": "Thai-Filipino",
-        "isNew": True,
-        "isInsider": True,
-        "lat": 39.9747,
-        "lng": -75.1318,
-        "source": "phillymag.com",
-    },
-    {
-        "id": "spot-69",
-        "name": "Lucky Duck",
-        "type": "restaurant",
-        "address": "Rivermark Apartments, N. Columbus Blvd, Philadelphia, PA 19123",
-        "neighborhood": "Northern Liberties",
-        "description": "A new bar/restaurant overlooking the Delaware River from the Libertee Grounds team. American bar food, pizzas, and cocktails with waterfront views in NoLibs. Deliberately millennial-coded with a playful, social atmosphere perfect for group hangs.",
-        "vibeTag": "local-fav",
-        "priceRange": "$$",
-        "cuisine": "American",
-        "isNew": True,
-        "isInsider": False,
-        "lat": 39.9680,
-        "lng": -75.1339,
-        "source": "phillymag.com",
-    },
-    {
-        "id": "spot-70",
-        "name": "Sacred Vice Brewing — Berks Taproom",
-        "type": "bar",
-        "address": "1027 N Berks St, Philadelphia, PA 19122",
-        "neighborhood": "Kensington",
-        "description": "Praised by Philly's top bartenders as one of the best new bars in the city. Great craft beer, beautiful mid-century modern decor, and a vinyl-only music selection with over 2,000 records. A chill, cozy neighborhood taproom that rewards repeat visits.",
-        "vibeTag": "insider",
-        "priceRange": "$$",
-        "cuisine": None,
-        "isNew": True,
-        "isInsider": True,
-        "lat": 39.9752,
-        "lng": -75.1416,
-        "source": "vinepair.com",
-    },
-    {
-        "id": "spot-71",
-        "name": "Next of Kin",
-        "type": "bar",
-        "address": "1300 N Front St, Philadelphia, PA 19122",
-        "neighborhood": "Fishtown",
-        "description": "One of Philly's best new cocktail bars according to industry insiders. Great cocktails, friendly staff, and a space that makes you want to stay. Named the top new bar pick by multiple Philly bartenders polled by VinePair.",
-        "vibeTag": "insider",
-        "priceRange": "$$",
-        "cuisine": "cocktails",
-        "isNew": True,
-        "isInsider": True,
-        "lat": 39.9722,
-        "lng": -75.1348,
-        "source": "vinepair.com",
-    },
-    {
-        "id": "spot-72",
-        "name": "Amá",
-        "type": "restaurant",
-        "address": "Philadelphia, PA",
-        "neighborhood": "Philadelphia",
-        "description": "A buzzy new spot making culinary-style cocktails that lean into anti-waste ingredients. Beautiful, thoughtful drinks with a sustainability-forward approach. Cited by Philly bartenders as one of the most exciting new openings in the city.",
-        "vibeTag": "insider",
-        "priceRange": "$$",
-        "cuisine": "cocktails / small plates",
-        "isNew": True,
-        "isInsider": True,
-        "lat": 39.9526,
-        "lng": -75.1652,
-        "source": "vinepair.com",
+        "lat": 39.9505,
+        "lng": -75.1700,
+        "source": "inquirer.com / phillymag.com",
     },
 ]
 
-# Check for duplicates against existing hotspot names
+# Check for dupes
 hotspots_match = re.search(r'(export const hotspots: HotSpot\[\] = \[)(.*?)(\];)', content, re.DOTALL)
 hotspots_text = hotspots_match.group(2)
 existing_spot_names = set()
@@ -352,72 +317,58 @@ print(f"New hotspots to add: {len(actually_new_spots)}")
 # 4. Influencer recentPicks updates
 # ────────────────────────────────────────────────
 influencer_updates = {
-    "wooder_ice": [
+    "@wooder_ice": [
         {
-            "name": "PHS Pop-Up Garden Season",
+            "name": "Wooder Ice Happy Hour at Uchi",
+            "type": "spot",
+            "neighborhood": "Rittenhouse",
+            "quote": "Philly food lovers, clear your calendars. Wooder Ice hosted a special Happy Hour at Uchi -- one of the hottest new sushi spots in the city. The vibes were immaculate.",
+            "date": "2026-03-11",
+        },
+    ],
+    "@josheatsphilly": [
+        {
+            "name": "Restaurant Turn-Ons and Turn-Offs",
+            "type": "spot",
+            "neighborhood": "Philadelphia",
+            "quote": "Josh stopped by the Mike Late Show to share his top restaurant turn-ons and turn-offs in the Philly dining scene. The conversation every food lover needs to hear.",
+            "date": "2026-03-06",
+        },
+    ],
+    "@djour.philly": [
+        {
+            "name": "Manong in Fairmount",
+            "type": "spot",
+            "neighborhood": "Fairmount",
+            "quote": "Big name chefs pivoting towards approachable and affordable. Money's tight and nostalgia always comforts. Manong in Fairmount -- for how much I spit venom on Fairmount, it's one of my favorite neighborhoods.",
+            "date": "2026-01-15",
+        },
+    ],
+    "@swagfoodphilly": [
+        {
+            "name": "Southeast Asian Market at FDR Park",
             "type": "event",
-            "neighborhood": "Manayunk / South Street",
-            "quote": "The pop-up gardens are back with boardwalk-style eats, frozen drinks, and Flower Show plants getting a second life. Grand opening March 27!",
+            "neighborhood": "South Philly",
+            "quote": "PSA: the Southeast Asian Market is back at FDR Park on April 4th! With over 80+ vendors, this is one of the best outdoor food experiences in the city. Don't sleep on it.",
             "date": "2026-03-17",
         },
+    ],
+    "@thephillyfoodfanatic": [
         {
-            "name": "Diversitech 2026",
+            "name": "Cherry Blossom Festival Preview",
             "type": "event",
-            "neighborhood": "Center City",
-            "quote": "Diversitech 2026 returns March 19-21, bringing together leaders, innovators, founders, and emerging talent for one of the most dynamic events in Philly.",
-            "date": "2026-02-26",
+            "neighborhood": "Fairmount Park",
+            "quote": "The Cherry Blossom Festival is this weekend (March 28-29) at Fairmount Park. Food, performances, and the most beautiful spring blooms in the city. Get your tickets now!",
+            "date": "2026-03-20",
         },
     ],
-    "josheatsphilly": [
+    "@cass_andthecity": [
         {
-            "name": "5 New Center City Spots for 2026",
-            "type": "spot",
-            "neighborhood": "Center City",
-            "quote": "From buzzy new cocktail bars and casual hangouts to late night food and intimate dining — these Center City spots are some of the most exciting in Philly right now.",
-            "date": "2026-01-02",
-        },
-        {
-            "name": "James Beard Award Semifinalists",
+            "name": "Spring Dining in Philly",
             "type": "spot",
             "neighborhood": "Philadelphia",
-            "quote": "12 Philadelphia spots were named 2026 James Beard Award semifinalists, spanning Outstanding Restaurant, Best New Restaurant, and more. Philly stays winning.",
-            "date": "2026-01-23",
-        },
-    ],
-    "feedingtimetv": [
-        {
-            "name": "Best Wings in Philadelphia",
-            "type": "spot",
-            "neighborhood": "Philadelphia",
-            "quote": "These are the best wings in Philadelphia coming into 2026. The crispy, saucy truth — DM me your favorites!",
-            "date": "2026-02-17",
-        },
-    ],
-    "phillyfoodladies": [
-        {
-            "name": "Spring Restaurant Week Picks",
-            "type": "spot",
-            "neighborhood": "Philadelphia",
-            "quote": "Your guide to Philly's best food, drinks & fun this spring. We're hitting every new opening and pop-up we can find!",
+            "quote": "The best vibe to catch in 2026? That Philly Pheeling. When you're ready to catch it, I'm here to get you there. Spring dining season is officially on.",
             "date": "2026-03-10",
-        },
-    ],
-    "fueledonphilly": [
-        {
-            "name": "Yards Brewing Eagles Watch Party",
-            "type": "spot",
-            "neighborhood": "Northern Liberties",
-            "quote": "A great place to watch the Eagles game is Yards Brewing — host a watch party for 20 guests at $50/person with open bar and unlimited wings, pretzels, and hummus.",
-            "date": "2026-03-10",
-        },
-    ],
-    "koryaversa": [
-        {
-            "name": "Manayunk StrEAT Food Festival",
-            "type": "event",
-            "neighborhood": "Manayunk",
-            "quote": "Philly's biggest food festival is back! StrEAT Food takes over historic Main Street on Sunday, April 19, 2026. Save the date & come hungry!",
-            "date": "2026-03-15",
         },
     ],
 }
@@ -425,7 +376,6 @@ influencer_updates = {
 # ────────────────────────────────────────────────
 # 5. Build updated content
 # ────────────────────────────────────────────────
-
 def event_to_ts(ev):
     insider_str = "true" if ev["isInsider"] else "false"
     name_esc = ev["name"].replace("'", "\\'").replace('"', '\\"')
@@ -476,7 +426,7 @@ def spot_to_ts(sp):
   }}"""
 
 
-# Rebuild events array
+# Rebuild events
 new_events_ts = ",\n".join([event_to_ts(ev) for ev in actually_new_events])
 rebuilt_events = ",".join(kept_events)
 if actually_new_events:
@@ -484,10 +434,10 @@ if actually_new_events:
 
 content = content[:events_match.start(2)] + rebuilt_events + content[events_match.end(2):]
 
-# Re-find hotspots match after content change
+# Re-find hotspots match
 hotspots_match = re.search(r'(export const hotspots: HotSpot\[\] = \[)(.*?)(\];)', content, re.DOTALL)
 
-# Rebuild hotspots array
+# Rebuild hotspots
 new_spots_ts = ",\n".join([spot_to_ts(sp) for sp in actually_new_spots])
 rebuilt_spots = hotspots_match.group(2)
 if actually_new_spots:
@@ -499,7 +449,6 @@ content = content[:hotspots_match.start(2)] + rebuilt_spots + content[hotspots_m
 # 6. Update influencer recentPicks
 # ────────────────────────────────────────────────
 def add_pick(content, handle, pick):
-    """Add a pick to an influencer's recentPicks array using string search"""
     quote_esc = pick["quote"].replace("'", "\\'").replace('"', '\\"')
     name_esc = pick["name"].replace("'", "\\'").replace('"', '\\"')
     new_pick = f"""      {{
@@ -510,16 +459,11 @@ def add_pick(content, handle, pick):
         date: "{pick['date']}",
       }}"""
 
-    # Find the influencer's recentPicks array
-    handle_pos = content.find(f'handle: "@{handle}"')
-    if handle_pos == -1:
-        # Try without @ prefix
-        handle_pos = content.find(f'handle: "{handle}"')
+    handle_pos = content.find(f'handle: "{handle}"')
     if handle_pos == -1:
         print(f"  WARNING: Could not find handle {handle}")
         return content
 
-    # Find recentPicks: [ after this handle
     picks_pos = content.find("recentPicks: [", handle_pos)
     if picks_pos == -1:
         print(f"  WARNING: Could not find recentPicks for {handle}")
@@ -534,7 +478,7 @@ for handle, picks in influencer_updates.items():
     for pick in picks:
         content = add_pick(content, handle, pick)
         influencer_update_count += 1
-        print(f"  Added pick for @{handle}: {pick['name']}")
+        print(f"  Added pick for {handle}: {pick['name']}")
 
 print(f"\nInfluencer picks added: {influencer_update_count}")
 
@@ -543,25 +487,20 @@ print(f"\nInfluencer picks added: {influencer_update_count}")
 # ────────────────────────────────────────────────
 print("\n--- DEDUPLICATION CHECK ---")
 
-# Re-parse events for dedup
 events_match2 = re.search(r'export const events: PhillyEvent\[\] = \[(.*?)\];', content, re.DOTALL)
 event_blocks2 = re.findall(r'\s*\{[^{}]*?\}', events_match2.group(1))
 
-# Check for duplicate event names (case-insensitive)
 seen_event_names = {}
 event_dupes = 0
 deduped_events = []
 for block in event_blocks2:
     nm = re.search(r'name:\s*"([^"]*)"', block)
-    eid = re.search(r'id:\s*"([^"]*)"', block)
     if nm:
         key = nm.group(1).lower().replace("\\'", "'")
         if key in seen_event_names:
-            # Keep the longer description
             existing_desc = re.search(r'description:\s*"([^"]*)"', seen_event_names[key])
             new_desc = re.search(r'description:\s*"([^"]*)"', block)
             if new_desc and existing_desc and len(new_desc.group(1)) > len(existing_desc.group(1)):
-                # Replace existing with this one
                 deduped_events = [b for b in deduped_events if b != seen_event_names[key]]
                 deduped_events.append(block)
                 seen_event_names[key] = block
@@ -575,7 +514,6 @@ for block in event_blocks2:
     else:
         deduped_events.append(block)
 
-# Check for duplicate hotspot names
 hotspots_match2 = re.search(r'export const hotspots: HotSpot\[\] = \[(.*?)\];', content, re.DOTALL)
 spot_blocks2 = re.findall(r'\s*\{[^{}]*?\}', hotspots_match2.group(1))
 
@@ -613,7 +551,6 @@ for block in deduped_events + deduped_spots:
 id_counts = {}
 for i in all_ids:
     id_counts[i] = id_counts.get(i, 0) + 1
-
 dup_ids = {k: v for k, v in id_counts.items() if v > 1}
 if dup_ids:
     print(f"  WARNING: Duplicate IDs found: {dup_ids}")
@@ -623,7 +560,6 @@ else:
 total_dupes = event_dupes + spot_dupes
 print(f"\nTotal duplicates removed: {total_dupes} ({event_dupes} events, {spot_dupes} spots)")
 
-# Rebuild if deduplication removed anything
 if event_dupes > 0:
     rebuilt = ",".join(deduped_events)
     events_match3 = re.search(r'(export const events: PhillyEvent\[\] = \[)(.*?)(\];)', content, re.DOTALL)
@@ -640,7 +576,6 @@ if spot_dupes > 0:
 with open(DATA_FILE, "w") as f:
     f.write(content)
 
-# Final counts
 final_events = len(re.findall(r'id: "event-', content))
 final_spots = len(re.findall(r'id: "spot-', content))
 
