@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { hotspots, spotTypes, vibeOptions, priceRanges, neighborhoods, type HotSpot } from "@/data/philly-data";
+import { getSortedHotspots } from "@/lib/hotspot-lifecycle";
 import { SpotCard } from "@/components/SpotCard";
 import { SpotDrawer } from "@/components/DetailDrawer";
 import { FilterChips, FilterToggle } from "@/components/FilterChips";
@@ -15,8 +16,11 @@ export function SpotsPage() {
   const [insiderOnly, setInsiderOnly] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
 
+  // Sort all hotspots by trending score, then apply filters
+  const sortedSpots = useMemo(() => getSortedHotspots(hotspots), []);
+
   const filtered = useMemo(() => {
-    return hotspots.filter((s) => {
+    return sortedSpots.filter((s) => {
       if (type !== "All" && s.type.toLowerCase() !== type.toLowerCase()) return false;
       if (vibe !== "All" && s.vibeTag !== vibe) return false;
       if (priceRange !== "All" && s.priceRange !== priceRange) return false;
@@ -25,7 +29,7 @@ export function SpotsPage() {
       if (insiderOnly && !s.isInsider) return false;
       return true;
     });
-  }, [type, vibe, priceRange, neighborhood, newOnly, insiderOnly]);
+  }, [type, vibe, priceRange, neighborhood, newOnly, insiderOnly, sortedSpots]);
 
   return (
     <div className="min-h-screen px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto" data-testid="page-spots">

@@ -14,6 +14,7 @@ import {
   type Influencer,
   type InfluencerPick,
 } from "@/data/philly-data";
+import { getTopHotspots, getHottestEvents, getSortedHotspots } from "@/lib/hotspot-lifecycle";
 import { Sparkles, TrendingUp, Play, ExternalLink } from "lucide-react";
 import { EmailCapture } from "@/components/EmailCapture";
 
@@ -109,61 +110,66 @@ export function ExplorePage() {
     });
   }, [selectedInfluencer]);
 
+  // Pre-compute scored/sorted data
+  const hottestEvents = useMemo(() => getHottestEvents(events, 15), []);
+  const hottestSpots = useMemo(() => getTopHotspots(hotspots, 15), []);
+  const allSortedSpots = useMemo(() => getSortedHotspots(hotspots), []);
+
   const feedItems = useMemo(() => {
     let items: Array<{ type: "event"; data: PhillyEvent } | { type: "spot"; data: HotSpot }> = [];
 
     // If influencer selected, skip feed items — we'll show influencer picks instead
     if (selectedInfluencer) return [];
 
-    if (category === "All" || category === "Events") {
-      items.push(...events.map((e) => ({ type: "event" as const, data: e })));
-    }
-    if (category === "All" || category === "Food") {
-      items.push(...events.filter((e) => e.category === "food").map((e) => ({ type: "event" as const, data: e })));
-      items.push(...hotspots.filter((h) => h.type === "restaurant" || h.type === "cafe").map((h) => ({ type: "spot" as const, data: h })));
-    }
-    if (category === "Nightlife") {
-      items.push(...events.filter((e) => e.category === "nightlife").map((e) => ({ type: "event" as const, data: e })));
-      items.push(...hotspots.filter((h) => h.type === "bar" || h.type === "venue").map((h) => ({ type: "spot" as const, data: h })));
-    }
-    if (category === "Music") {
-      items.push(...events.filter((e) => e.category === "music").map((e) => ({ type: "event" as const, data: e })));
-      items.push(...hotspots.filter((h) => h.type === "venue").map((h) => ({ type: "spot" as const, data: h })));
-    }
-    if (category === "Arts") {
-      items.push(...events.filter((e) => e.category === "arts").map((e) => ({ type: "event" as const, data: e })));
-    }
-    if (category === "Outdoor") {
-      items.push(...events.filter((e) => e.category === "outdoor").map((e) => ({ type: "event" as const, data: e })));
-    }
-    if (category === "Insider Picks") {
-      items.push(...events.filter((e) => e.isInsider).map((e) => ({ type: "event" as const, data: e })));
-      items.push(...hotspots.filter((h) => h.isInsider).map((h) => ({ type: "spot" as const, data: h })));
-    }
-
-    if (category !== "All" && category !== "Events") {
-      const seen = new Set<string>();
-      items = items.filter((item) => {
-        const key = item.type + (item.type === "event" ? (item.data as PhillyEvent).name : (item.data as HotSpot).name);
-        if (seen.has(key)) return false;
-        seen.add(key);
-        return true;
-      });
-    }
-
     if (category === "All") {
-      const eventItems = events.slice(0, 10).map((e) => ({ type: "event" as const, data: e }));
-      const spotItems = hotspots.slice(0, 10).map((h) => ({ type: "spot" as const, data: h }));
-      items = [];
+      // Interleave hottest events and spots for a dynamic mix
+      const eventItems = hottestEvents.slice(0, 10).map((e) => ({ type: "event" as const, data: e }));
+      const spotItems = hottestSpots.slice(0, 10).map((h) => ({ type: "spot" as const, data: h }));
       const max = Math.max(eventItems.length, spotItems.length);
       for (let i = 0; i < max; i++) {
         if (eventItems[i]) items.push(eventItems[i]);
         if (spotItems[i]) items.push(spotItems[i]);
       }
+      return items;
     }
 
+    if (category === "Events") {
+      items.push(...hottestEvents.map((e) => ({ type: "event" as const, data: e })));
+    }
+    if (category === "Food") {
+      items.push(...hottestEvents.filter((e) => e.category === "food").map((e) => ({ type: "event" as const, data: e })));
+      items.push(...allSortedSpots.filter((h) => h.type === "restaurant" || h.type === "cafe").map((h) => ({ type: "spot" as const, data: h })));
+    }
+    if (category === "Nightlife") {
+      items.push(...hottestEvents.filter((e) => e.category === "nightlife").map((e) => ({ type: "event" as const, data: e })));
+      items.push(...allSortedSpots.filter((h) => h.type === "bar" || h.type === "venue").map((h) => ({ type: "spot" as const, data: h })));
+    }
+    if (category === "Music") {
+      items.push(...hottestEvents.filter((e) => e.category === "music").map((e) => ({ type: "event" as const, data: e })));
+      items.push(...allSortedSpots.filter((h) => h.type === "venue").map((h) => ({ type: "spot" as const, data: h })));
+    }
+    if (category === "Arts") {
+      items.push(...hottestEvents.filter((e) => e.category === "arts").map((e) => ({ type: "event" as const, data: e })));
+    }
+    if (category === "Outdoor") {
+      items.push(...hottestEvents.filter((e) => e.category === "outdoor").map((e) => ({ type: "event" as const, data: e })));
+    }
+    if (category === "Insider Picks") {
+      items.push(...hottestEvents.filter((e) => e.isInsider).map((e) => ({ type: "event" as const, data: e })));
+      items.push(...allSortedSpots.filter((h) => h.isInsider).map((h) => ({ type: "spot" as const, data: h })));
+    }
+
+    // Deduplicate
+    const seen = new Set<string>();
+    items = items.filter((item) => {
+      const key = item.type + (item.type === "event" ? (item.data as PhillyEvent).name : (item.data as HotSpot).name);
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+
     return items;
-  }, [category, selectedInfluencer]);
+  }, [category, selectedInfluencer, hottestEvents, hottestSpots, allSortedSpots]);
 
   // Count picks that have a reel
   const reelCount = selectedInfluencer
@@ -428,7 +434,7 @@ export function ExplorePage() {
               </span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {[...events.filter((e) => e.isInsider).slice(0, 3), ...hotspots.filter((h) => h.isInsider).slice(0, 3)].map((item, i) => (
+              {[...hottestEvents.filter((e) => e.isInsider).slice(0, 3), ...allSortedSpots.filter((h) => h.isInsider).slice(0, 3)].map((item, i) => (
                 <div key={i}>
                   {"venue" in item ? (
                     <EventCard

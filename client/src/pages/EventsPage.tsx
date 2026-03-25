@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { events, eventCategories, vibeOptions, neighborhoods, type PhillyEvent } from "@/data/philly-data";
+import { getUpcomingEvents } from "@/lib/hotspot-lifecycle";
 import { EventCard } from "@/components/EventCard";
 import { EventDrawer } from "@/components/DetailDrawer";
 import { FilterChips, FilterToggle } from "@/components/FilterChips";
@@ -13,15 +14,18 @@ export function EventsPage() {
   const [insiderOnly, setInsiderOnly] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
 
+  // Only show upcoming events, sorted by date
+  const upcomingEvents = useMemo(() => getUpcomingEvents(events), []);
+
   const filtered = useMemo(() => {
-    return events.filter((e) => {
+    return upcomingEvents.filter((e) => {
       if (category !== "All" && e.category.toLowerCase() !== category.toLowerCase()) return false;
       if (vibe !== "All" && e.vibeTag !== vibe) return false;
       if (neighborhood !== "All" && e.neighborhood !== neighborhood) return false;
       if (insiderOnly && !e.isInsider) return false;
       return true;
     });
-  }, [category, vibe, neighborhood, insiderOnly]);
+  }, [category, vibe, neighborhood, insiderOnly, upcomingEvents]);
 
   return (
     <div className="min-h-screen px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto" data-testid="page-events">
@@ -31,7 +35,7 @@ export function EventsPage() {
           <Calendar size={20} className="text-primary" />
           <h1 className="font-display font-bold text-xl text-foreground">Events</h1>
           <span className="text-xs text-muted-foreground bg-white/5 px-2 py-0.5 rounded-full">
-            {filtered.length} of {events.length}
+            {filtered.length} upcoming
           </span>
         </div>
         <button

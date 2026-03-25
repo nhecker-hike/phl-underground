@@ -1,6 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useMemo } from "react";
 import L from "leaflet";
 import { events, hotspots, sportsTeams, type PhillyEvent, type HotSpot, type SportsTeam } from "@/data/philly-data";
+import { getTopHotspots, getUpcomingEvents } from "@/lib/hotspot-lifecycle";
 import { MapLegend } from "./MapLegend";
 
 // Custom marker icons
@@ -50,6 +51,10 @@ export function MapView({
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<L.Map | null>(null);
 
+  // Cap map pins: top 25 hottest spots + only upcoming events
+  const topSpots = useMemo(() => getTopHotspots(hotspots, 25), []);
+  const upcomingEvents = useMemo(() => getUpcomingEvents(events), []);
+
   useEffect(() => {
     if (!mapRef.current || mapInstance.current) return;
 
@@ -86,8 +91,8 @@ export function MapView({
       }
     });
 
-    const eventsToShow = showEvents ? (filteredEvents || events) : [];
-    const spotsToShow = showSpots ? (filteredSpots || hotspots) : [];
+    const eventsToShow = showEvents ? (filteredEvents || upcomingEvents) : [];
+    const spotsToShow = showSpots ? (filteredSpots || topSpots) : [];
 
     eventsToShow.forEach((event) => {
       const marker = L.marker([event.lat, event.lng], { icon: goldIcon }).addTo(map);
@@ -157,7 +162,7 @@ export function MapView({
         `);
       });
     }
-  }, [filteredEvents, filteredSpots, showEvents, showSpots, showSports, onEventClick, onSpotClick]);
+  }, [filteredEvents, filteredSpots, showEvents, showSpots, showSports, onEventClick, onSpotClick, topSpots, upcomingEvents]);
 
   return (
     <div className="relative" style={{ height, width: "100%" }} data-testid="map-wrapper">

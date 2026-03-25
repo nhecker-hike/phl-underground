@@ -34,6 +34,8 @@ export interface HotSpot {
   lat: number;
   lng: number;
   source: string;
+  addedDate: string;
+  trendingScore: number;
 }
 
 export interface InfluencerPick {
@@ -1853,6 +1855,8 @@ export const hotspots: HotSpot[] = [
     isInsider: false,
     lat: 39.949,
     lng: -75.1703,
+    addedDate: "2026-03-24",
+    trendingScore: 70,
   },
   {
     id: "spot-2",
@@ -1869,6 +1873,8 @@ export const hotspots: HotSpot[] = [
     isInsider: false,
     lat: 39.9845,
     lng: -75.1297,
+    addedDate: "2026-03-23",
+    trendingScore: 70,
   },
   {
     id: "spot-3",
@@ -1885,6 +1891,8 @@ export const hotspots: HotSpot[] = [
     isInsider: false,
     lat: 39.9205,
     lng: -75.1685,
+    addedDate: "2026-03-22",
+    trendingScore: 70,
   },
   {
     id: "spot-4",
@@ -1901,6 +1909,8 @@ export const hotspots: HotSpot[] = [
     isInsider: false,
     lat: 39.9317,
     lng: -75.1564,
+    addedDate: "2026-03-21",
+    trendingScore: 70,
   },
   {
     id: "spot-5",
@@ -1917,6 +1927,8 @@ export const hotspots: HotSpot[] = [
     isInsider: false,
     lat: 39.9492,
     lng: -75.168,
+    addedDate: "2026-03-20",
+    trendingScore: 70,
   },
   {
     id: "spot-6",
@@ -1933,6 +1945,8 @@ export const hotspots: HotSpot[] = [
     isInsider: true,
     lat: 39.9716,
     lng: -75.1347,
+    addedDate: "2026-03-19",
+    trendingScore: 90,
   },
   {
     id: "spot-7",
@@ -1949,6 +1963,8 @@ export const hotspots: HotSpot[] = [
     isInsider: false,
     lat: 39.9395,
     lng: -75.1693,
+    addedDate: "2026-03-18",
+    trendingScore: 70,
   },
   {
     id: "spot-8",
@@ -1965,6 +1981,8 @@ export const hotspots: HotSpot[] = [
     isInsider: true,
     lat: 39.9676,
     lng: -75.1758,
+    addedDate: "2026-03-24",
+    trendingScore: 90,
   },
   {
     id: "spot-9",
@@ -1981,6 +1999,8 @@ export const hotspots: HotSpot[] = [
     isInsider: false,
     lat: 39.9336,
     lng: -75.1567,
+    addedDate: "2026-03-23",
+    trendingScore: 70,
   },
   {
     id: "spot-10",
@@ -1997,6 +2017,8 @@ export const hotspots: HotSpot[] = [
     isInsider: true,
     lat: 39.9498,
     lng: -75.1669,
+    addedDate: "2026-03-22",
+    trendingScore: 90,
   },
   {
     id: "spot-11",
@@ -2013,6 +2035,8 @@ export const hotspots: HotSpot[] = [
     isInsider: true,
     lat: 39.9543,
     lng: -75.1512,
+    addedDate: "2026-03-09",
+    trendingScore: 90,
   },
   {
     id: "spot-12",
@@ -2029,6 +2053,8 @@ export const hotspots: HotSpot[] = [
     isInsider: false,
     lat: 39.951,
     lng: -75.1765,
+    addedDate: "2026-03-08",
+    trendingScore: 40,
   },
   {
     id: "spot-13",
@@ -2045,6 +2071,8 @@ export const hotspots: HotSpot[] = [
     isInsider: true,
     lat: 39.931,
     lng: -75.1557,
+    addedDate: "2026-03-19",
+    trendingScore: 90,
   },
   {
     id: "spot-14",
@@ -2061,6 +2089,8 @@ export const hotspots: HotSpot[] = [
     isInsider: false,
     lat: 39.95,
     lng: -75.163,
+    addedDate: "2026-03-06",
+    trendingScore: 40,
   },
   {
     id: "spot-15",
@@ -2077,6 +2107,8 @@ export const hotspots: HotSpot[] = [
     isInsider: true,
     lat: 39.972,
     lng: -75.1368,
+    addedDate: "2026-03-05",
+    trendingScore: 90,
   },
   {
     id: "spot-16",
@@ -2093,6 +2125,8 @@ export const hotspots: HotSpot[] = [
     isInsider: true,
     lat: 39.985,
     lng: -75.1248,
+    addedDate: "2026-03-04",
+    trendingScore: 90,
   },
   {
     id: "spot-17",
@@ -2109,6 +2143,8 @@ export const hotspots: HotSpot[] = [
     isInsider: true,
     lat: 39.9742,
     lng: -75.1345,
+    addedDate: "2026-03-11",
+    trendingScore: 90,
   },
   {
     id: "spot-18",
@@ -2125,6 +2161,8 @@ export const hotspots: HotSpot[] = [
     isInsider: true,
     lat: 39.944,
     lng: -75.1497,
+    addedDate: "2026-03-10",
+    trendingScore: 90,
   },
   {
     id: "spot-19",
@@ -2141,6 +2179,8 @@ export const hotspots: HotSpot[] = [
     isInsider: false,
     lat: 39.968,
     lng: -75.1286,
+    addedDate: "2026-03-09",
+    trendingScore: 40,
   },
   {
     id: "spot-20",
@@ -2157,6 +2197,8 @@ export const hotspots: HotSpot[] = [
     isInsider: false,
     lat: 39.9491,
     lng: -75.168,
+    addedDate: "2026-03-08",
+    trendingScore: 40,
   },
   {
     id: "spot-21",
@@ -2173,6 +2215,8 @@ export const hotspots: HotSpot[] = [
     isInsider: false,
     lat: 39.974,
     lng: -75.134,
+    addedDate: "2026-03-07",
+    trendingScore: 40,
   },
   {
     id: "spot-22",
@@ -2189,6 +2233,8 @@ export const hotspots: HotSpot[] = [
     isInsider: false,
     lat: 39.9275,
     lng: -75.1584,
+    addedDate: "2026-03-06",
+    trendingScore: 40,
   },
   {
     id: "spot-23",
@@ -2205,6 +2251,8 @@ export const hotspots: HotSpot[] = [
     isInsider: false,
     lat: 39.9717,
     lng: -75.1358,
+    addedDate: "2026-03-05",
+    trendingScore: 40,
   },
   {
     id: "spot-24",
@@ -2221,6 +2269,8 @@ export const hotspots: HotSpot[] = [
     isInsider: true,
     lat: 39.9487,
     lng: -75.1665,
+    addedDate: "2026-03-22",
+    trendingScore: 90,
   },
   {
     id: "spot-25",
@@ -2237,6 +2287,8 @@ export const hotspots: HotSpot[] = [
     isInsider: true,
     lat: 39.941,
     lng: -75.1548,
+    addedDate: "2026-03-11",
+    trendingScore: 90,
   },
   {
     id: "spot-26",
@@ -2253,6 +2305,8 @@ export const hotspots: HotSpot[] = [
     isInsider: true,
     lat: 39.9305,
     lng: -75.1539,
+    addedDate: "2026-03-10",
+    trendingScore: 90,
   },
   {
     id: "spot-27",
@@ -2269,6 +2323,8 @@ export const hotspots: HotSpot[] = [
     isInsider: true,
     lat: 39.9732,
     lng: -75.1356,
+    addedDate: "2026-03-19",
+    trendingScore: 90,
   },
   {
     id: "spot-28",
@@ -2285,6 +2341,8 @@ export const hotspots: HotSpot[] = [
     isInsider: false,
     lat: 39.9499,
     lng: -75.144,
+    addedDate: "2026-03-08",
+    trendingScore: 40,
   },
   {
     id: "spot-29",
@@ -2301,6 +2359,8 @@ export const hotspots: HotSpot[] = [
     isInsider: true,
     lat: 39.955,
     lng: -75.1568,
+    addedDate: "2026-03-07",
+    trendingScore: 90,
   },
   {
     id: "spot-30",
@@ -2317,6 +2377,8 @@ export const hotspots: HotSpot[] = [
     isInsider: false,
     lat: 39.9745,
     lng: -75.1382,
+    addedDate: "2026-03-23",
+    trendingScore: 70,
   },
   {
     id: "spot-31",
@@ -2333,6 +2395,8 @@ export const hotspots: HotSpot[] = [
     isInsider: false,
     lat: 39.973,
     lng: -75.1322,
+    addedDate: "2026-03-05",
+    trendingScore: 40,
   },
   {
     id: "spot-32",
@@ -2349,6 +2413,8 @@ export const hotspots: HotSpot[] = [
     isInsider: true,
     lat: 39.9404,
     lng: -75.1488,
+    addedDate: "2026-03-04",
+    trendingScore: 90,
   },
   {
     id: "spot-33",
@@ -2365,6 +2431,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9519,
     lng: -75.1618,
     source: "visitphilly.com / phillymag.com",
+    addedDate: "2026-03-20",
+    trendingScore: 70,
   },
   {
     id: "spot-34",
@@ -2381,6 +2449,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9486,
     lng: -75.1465,
     source: "visitphilly.com",
+    addedDate: "2026-03-19",
+    trendingScore: 70,
   },
   {
     id: "spot-35",
@@ -2397,6 +2467,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.958,
     lng: -75.16,
     source: "vinepair.com / phillymag.com",
+    addedDate: "2026-03-18",
+    trendingScore: 90,
   },
   {
     id: "spot-36",
@@ -2413,6 +2485,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9451,
     lng: -75.1772,
     source: "phillymag.com / pinestreetgrill.com",
+    addedDate: "2026-03-24",
+    trendingScore: 70,
   },
   {
     id: "spot-37",
@@ -2429,6 +2503,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9476,
     lng: -75.1617,
     source: "visitphilly.com",
+    addedDate: "2026-03-23",
+    trendingScore: 90,
   },
   {
     id: "spot-38",
@@ -2445,6 +2521,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9495,
     lng: -75.1636,
     source: "vinepair.com",
+    addedDate: "2026-03-22",
+    trendingScore: 90,
   },
   {
     id: "spot-39",
@@ -2461,6 +2539,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9488,
     lng: -75.1654,
     source: "vinepair.com / josheatsphilly",
+    addedDate: "2026-03-21",
+    trendingScore: 90,
   },
   {
     id: "spot-40",
@@ -2477,6 +2557,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9714,
     lng: -75.1343,
     source: "visitphilly.com",
+    addedDate: "2026-03-20",
+    trendingScore: 90,
   },
   {
     id: "spot-42",
@@ -2493,6 +2575,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9348,
     lng: -75.1485,
     source: "visitphilly.com",
+    addedDate: "2026-03-19",
+    trendingScore: 90,
   },
   {
     id: "spot-43",
@@ -2509,6 +2593,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9392,
     lng: -75.1509,
     source: "visitphilly.com",
+    addedDate: "2026-03-18",
+    trendingScore: 90,
   },
   {
     id: "spot-44",
@@ -2525,6 +2611,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.977,
     lng: -75.129,
     source: "visitphilly.com",
+    addedDate: "2026-03-24",
+    trendingScore: 90,
   },
   {
     id: "spot-47",
@@ -2541,6 +2629,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9493,
     lng: -75.1720,
     source: "inquirer.com / resy.com",
+    addedDate: "2026-03-23",
+    trendingScore: 90,
   },
   {
     id: "spot-49",
@@ -2557,6 +2647,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9763,
     lng: -75.1286,
     source: "inquirer.com",
+    addedDate: "2026-03-22",
+    trendingScore: 90,
   },
 
   {
@@ -2574,6 +2666,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9738,
     lng: -75.1351,
     source: "vinepair.com",
+    addedDate: "2026-03-21",
+    trendingScore: 90,
   },
   {
     id: "spot-51",
@@ -2590,6 +2684,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.974,
     lng: -75.1271,
     source: "inquirer.com / phillymag.com",
+    addedDate: "2026-03-20",
+    trendingScore: 90,
   },
   {
     id: "spot-52",
@@ -2606,6 +2702,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.951,
     lng: -75.171,
     source: "inquirer.com / eater.com",
+    addedDate: "2026-03-19",
+    trendingScore: 90,
   },
   {
     id: "spot-53",
@@ -2622,6 +2720,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.969,
     lng: -75.1335,
     source: "phillymag.com / inquirer.com",
+    addedDate: "2026-03-18",
+    trendingScore: 70,
   },
   {
     id: "spot-54",
@@ -2638,6 +2738,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.963,
     lng: -75.1425,
     source: "inquirer.com",
+    addedDate: "2026-03-24",
+    trendingScore: 90,
   },
   {
     id: "spot-55",
@@ -2654,6 +2756,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9468,
     lng: -75.1535,
     source: "inquirer.com / phillymag.com",
+    addedDate: "2026-03-23",
+    trendingScore: 90,
   },
   {
     id: "spot-56",
@@ -2670,6 +2774,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9502,
     lng: -75.1672,
     source: "phillymag.com",
+    addedDate: "2026-03-22",
+    trendingScore: 90,
   },
   {
     id: "spot-57",
@@ -2686,6 +2792,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9618,
     lng: -75.1425,
     source: "phillyvoice.com",
+    addedDate: "2026-03-21",
+    trendingScore: 90,
   },
 
   {
@@ -2703,6 +2811,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.956,
     lng: -75.201,
     source: "philly.eater.com",
+    addedDate: "2026-03-20",
+    trendingScore: 90,
   },
   {
     id: "spot-59",
@@ -2719,6 +2829,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9505,
     lng: -75.17,
     source: "philly.eater.com",
+    addedDate: "2026-03-19",
+    trendingScore: 90,
   },
   {
     id: "spot-60",
@@ -2735,6 +2847,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.985,
     lng: -75.15,
     source: "philly.eater.com",
+    addedDate: "2026-03-18",
+    trendingScore: 90,
   },
   {
     id: "spot-61",
@@ -2751,6 +2865,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.972,
     lng: -75.133,
     source: "philly.eater.com",
+    addedDate: "2026-03-24",
+    trendingScore: 90,
   },
   {
     id: "spot-62",
@@ -2767,6 +2883,8 @@ export const hotspots: HotSpot[] = [
     lat: 40.024,
     lng: -75.224,
     source: "visitphilly.com",
+    addedDate: "2026-03-23",
+    trendingScore: 90,
   },
 
   {
@@ -2784,6 +2902,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.943,
     lng: -75.157,
     source: "inquirer.com",
+    addedDate: "2026-03-22",
+    trendingScore: 90,
   },
   {
     id: "spot-64",
@@ -2800,6 +2920,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.964,
     lng: -75.142,
     source: "inquirer.com",
+    addedDate: "2026-03-21",
+    trendingScore: 90,
   },
   {
     id: "spot-65",
@@ -2816,6 +2938,8 @@ export const hotspots: HotSpot[] = [
     lat: 40.0775,
     lng: -75.2095,
     source: "inquirer.com",
+    addedDate: "2026-03-20",
+    trendingScore: 90,
   },
   {
     id: "spot-66",
@@ -2832,9 +2956,9 @@ export const hotspots: HotSpot[] = [
     lat: 39.9406,
     lng: -75.149,
     source: "inquirer.com",
+    addedDate: "2026-03-19",
+    trendingScore: 70,
   },
-
-,
   {
     id: "spot-67",
     name: "Liquorette",
@@ -2850,6 +2974,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9484,
     lng: -75.1688,
     source: "phillymag.com / seanelstone.com",
+    addedDate: "2026-03-18",
+    trendingScore: 90,
   },
   {
     id: "spot-68",
@@ -2866,6 +2992,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9747,
     lng: -75.1318,
     source: "phillymag.com",
+    addedDate: "2026-03-24",
+    trendingScore: 90,
   },
   {
     id: "spot-69",
@@ -2882,6 +3010,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.968,
     lng: -75.1339,
     source: "phillymag.com",
+    addedDate: "2026-03-23",
+    trendingScore: 70,
   },
   {
     id: "spot-70",
@@ -2898,6 +3028,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9752,
     lng: -75.1416,
     source: "vinepair.com",
+    addedDate: "2026-03-22",
+    trendingScore: 90,
   },
   {
     id: "spot-71",
@@ -2914,6 +3046,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9722,
     lng: -75.1348,
     source: "vinepair.com",
+    addedDate: "2026-03-21",
+    trendingScore: 90,
   },
   {
     id: "spot-72",
@@ -2930,6 +3064,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9526,
     lng: -75.1652,
     source: "vinepair.com",
+    addedDate: "2026-03-20",
+    trendingScore: 90,
   },
   {
     id: "spot-73",
@@ -2946,6 +3082,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9784,
     lng: -75.138,
     source: "phillyprgirl.com / yelp.com",
+    addedDate: "2026-03-19",
+    trendingScore: 90,
   },
   {
     id: "spot-74",
@@ -2962,6 +3100,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9526,
     lng: -75.1652,
     source: "instagram.com / phillymag.com",
+    addedDate: "2026-03-18",
+    trendingScore: 90,
   },
   {
     id: "spot-75",
@@ -2978,6 +3118,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9526,
     lng: -75.1652,
     source: "instagram.com / inquirer.com",
+    addedDate: "2026-03-24",
+    trendingScore: 90,
   },
   {
     id: "spot-76",
@@ -2994,6 +3136,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9505,
     lng: -75.17,
     source: "inquirer.com / phillymag.com",
+    addedDate: "2026-03-23",
+    trendingScore: 90,
   },
   {
     id: "spot-77",
@@ -3010,6 +3154,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9490,
     lng: -75.2190,
     source: "Philadelphia Inquirer",
+    addedDate: "2026-03-22",
+    trendingScore: 90,
   },
   {
     id: "spot-78",
@@ -3026,6 +3172,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9521,
     lng: -75.1710,
     source: "Philadelphia Inquirer",
+    addedDate: "2026-03-21",
+    trendingScore: 70,
   },
   {
     id: "spot-79",
@@ -3042,6 +3190,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9337,
     lng: -75.1589,
     source: "Philadelphia Inquirer",
+    addedDate: "2026-03-20",
+    trendingScore: 70,
   },
   {
     id: "spot-80",
@@ -3058,6 +3208,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9530,
     lng: -75.1744,
     source: "Tasting Table / Visit Philly",
+    addedDate: "2026-03-08",
+    trendingScore: 90,
   },
   {
     id: "spot-81",
@@ -3074,6 +3226,8 @@ export const hotspots: HotSpot[] = [
     lat: 40.0372,
     lng: -75.0485,
     source: "visitphilly.com",
+    addedDate: "2026-03-18",
+    trendingScore: 90,
   },
   {
     id: "spot-82",
@@ -3090,6 +3244,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9395,
     lng: -75.1478,
     source: "visitphilly.com",
+    addedDate: "2026-03-24",
+    trendingScore: 70,
   },
   {
     id: "spot-83",
@@ -3106,6 +3262,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9347,
     lng: -75.1665,
     source: "theinfatuation.com",
+    addedDate: "2026-03-05",
+    trendingScore: 90,
   },
   {
     id: "spot-84",
@@ -3122,6 +3280,8 @@ export const hotspots: HotSpot[] = [
     lat: 39.9431,
     lng: -75.1729,
     source: "visitphilly.com",
+    addedDate: "2026-03-22",
+    trendingScore: 70,
   },
 ];
 
