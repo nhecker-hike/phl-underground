@@ -64,23 +64,7 @@ export type ItemType = "event" | "spot" | "influencer";
 
 export const events: PhillyEvent[] = [
 
-  {
-    id: "event-3",
-    name: "Philadelphia Phillies Home Opener vs. Texas Rangers",
-    date: "2026-03-26",
-    time: "4:15 PM",
-    venue: "Citizens Bank Park",
-    address: "1 Citizens Bank Way, Philadelphia, PA 19148",
-    neighborhood: "South Philly",
-    category: "sports",
-    description: "The Phillies open their 2026 home season against the Texas Rangers, featuring a ring and pennant ceremony. Bryce Harper, Kyle Schwarber, and the squad kick off their bid for a third straight NL East title in what is shaping up to be a landmark year for Philly sports.",
-    price: "$35+",
-    vibeTag: "mainstream",
-    source: "mlb.com / phillyvoice.com",
-    lat: 39.9057,
-    lng: -75.1666,
-    isInsider: false,
-  },
+  
   {
     id: "event-5",
     name: "Cherry Blossom Festival of Greater Philadelphia",
@@ -1244,23 +1228,7 @@ export const events: PhillyEvent[] = [
     isInsider: true,
   },
 
-  {
-    id: "event-97",
-    name: "Rebirth Brass Band at Underground Arts",
-    date: "2026-03-26",
-    time: "8:00 PM",
-    venue: "Underground Arts",
-    address: "1200 Callowhill St, Philadelphia, PA 19123",
-    neighborhood: "Callowhill",
-    category: "music",
-    description: "New Orleans legends Rebirth Brass Band bring their Grammy-winning funk, jazz, and second-line grooves to Underground Arts. One of the most joyful live music experiences you\'ll find anywhere — guaranteed to make you move.",
-    price: "$30+",
-    vibeTag: "insider",
-    source: "undergroundarts.org",
-    lat: 39.9596,
-    lng: -75.1582,
-    isInsider: true,
-  },
+  
   
   {
     id: "event-99",
@@ -1995,6 +1963,125 @@ export const events: PhillyEvent[] = [
     lat: 39.9528,
     lng: -75.205,
     isInsider: true,
+  },
+  {
+    id: "event-146",
+    name: "CupcakKe: The Bakkery Album Release Tour at Brooklyn Bowl",
+    date: "2026-03-27",
+    time: "8:00 PM",
+    venue: "Brooklyn Bowl Philadelphia",
+    address: "1009 Canal St, Philadelphia, PA 19123",
+    neighborhood: "Northern Liberties",
+    category: "concert",
+    description: "CupcakKe brings her outrageous energy and the Bakkery Album Release Tour to Brooklyn Bowl. The provocative rapper is known for wild live shows and a fiercely loyal fanbase. 18+ event.",
+    price: "$25+",
+    vibeTag: "underground",
+    source: "seatgeek.com",
+    lat: 39.963,
+    lng: -75.139,
+    isInsider: true,
+  },
+  {
+    id: "event-147",
+    name: "Moonchild at Ardmore Music Hall",
+    date: "2026-04-03",
+    time: "8:00 PM",
+    venue: "Ardmore Music Hall",
+    address: "23 E Lancaster Ave, Ardmore, PA 19003",
+    neighborhood: "Main Line",
+    category: "concert",
+    description: "Neo-soul trio Moonchild brings their lush, jazzy sound to the intimate Ardmore Music Hall. One of the most underrated live acts in R&B/jazz fusion, with Brittney Carter opening. A true insider pick.",
+    price: "$25+",
+    vibeTag: "underground",
+    source: "jambase.com",
+    lat: 40.0067,
+    lng: -75.2878,
+    isInsider: true,
+  },
+  {
+    id: "event-148",
+    name: "Philly Film Society Spring Festival",
+    date: "2026-04-17 to 2026-04-23",
+    time: "Various",
+    venue: "Various Locations",
+    address: "Philadelphia, PA",
+    neighborhood: "Citywide",
+    category: "film",
+    description: "The Philadelphia Film Society\'s annual Spring Festival brings a curated lineup of independent films, documentaries, and shorts to theaters across the city. Q&As with filmmakers, opening night parties, and late-night screenings make this a week-long cultural highlight.",
+    price: "$15+",
+    vibeTag: "underground",
+    source: "phillyfestivals.org",
+    lat: 39.9526,
+    lng: -75.1652,
+    isInsider: true,
+  },
+  {
+    id: "event-149",
+    name: "Dinah Day Philadelphia",
+    date: "2026-04-18",
+    time: "12:00 PM",
+    venue: "Various Locations",
+    address: "Philadelphia, PA",
+    neighborhood: "Citywide",
+    category: "cultural",
+    description: "An all-day celebration and community gathering for women and femmes in Philadelphia. Music, vendors, wellness activities, and good vibes at various spots across the city.",
+    price: "Free - Varies",
+    vibeTag: "underground",
+    source: "phillyfestivals.org",
+    lat: 39.9526,
+    lng: -75.1652,
+    isInsider: true,
+  },
+  {
+    id: "event-150",
+    name: "Maker Faire Philadelphia",
+    date: "2026-04-19",
+    time: "10:00 AM",
+    venue: "Various",
+    address: "Philadelphia, PA",
+    neighborhood: "Citywide",
+    category: "market",
+    description: "Philly\'s annual celebration of DIY culture, invention, and creativity. Makers, hackers, artists, and tinkerers showcase everything from 3D printing to robotics to handcrafted goods. A family-friendly festival for the curious.",
+    price: "Free - $10",
+    vibeTag: "local-favorite",
+    source: "phillyfestivals.org",
+    lat: 39.9526,
+    lng: -75.1652,
+    isInsider: false,
+  },
+  {
+    id: "event-151",
+    name: "Chestnut Hill Clover Market",
+    date: "2026-04-12",
+    time: "10:00 AM - 4:00 PM",
+    venue: "Germantown Ave, Chestnut Hill",
+    address: "Germantown Ave, Philadelphia, PA 19118",
+    neighborhood: "Chestnut Hill",
+    category: "market",
+    description: "The Clover Market returns to Chestnut Hill with curated vendors selling vintage finds, handmade goods, artisan food, and local crafts along charming Germantown Avenue. A quintessential Philly Sunday.",
+    price: "Free entry",
+    vibeTag: "local-favorite",
+    source: "phillyfestivals.org",
+    lat: 40.0783,
+    lng: -75.21,
+    isInsider: false,
+  },
+  {
+    id: "event-152",
+    name: "Mahler & Sorey with The Philadelphia Orchestra at Kimmel Center",
+    date: "2026-05-15 to 2026-05-16",
+    time: "8:00 PM",
+    venue: "Kimmel Center for the Performing Arts",
+    address: "300 S Broad St, Philadelphia, PA 19102",
+    neighborhood: "Center City",
+    category: "performing-arts",
+    description: "Pianist Aaron Diehl and The Philadelphia Orchestra deliver Mahler\'s groundbreaking Symphony No. 5 -- described as a foaming, roaring, raging sea of sound -- alongside a new work from Pulitzer Prize-winning composer Tyshawn Sorey.",
+    price: "$30+",
+    vibeTag: "after-dark",
+    source: "visitphilly.com",
+    lat: 39.9464,
+    lng: -75.166,
+    isInsider: true,
   }
 ];
 
@@ -2105,7 +2192,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.9716,
     lng: -75.1347,
     addedDate: "2026-03-19",
-    trendingScore: 90,
+    trendingScore: 85,
   },
   {
     id: "spot-7",
@@ -2123,7 +2210,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.9395,
     lng: -75.1693,
     addedDate: "2026-03-18",
-    trendingScore: 65,
+    trendingScore: 60,
   },
   {
     id: "spot-8",
@@ -2195,7 +2282,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.9543,
     lng: -75.1512,
     addedDate: "2026-03-09",
-    trendingScore: 85,
+    trendingScore: 80,
   },
   {
     id: "spot-12",
@@ -2213,7 +2300,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.951,
     lng: -75.1765,
     addedDate: "2026-03-08",
-    trendingScore: 35,
+    trendingScore: 30,
   },
   {
     id: "spot-13",
@@ -2231,7 +2318,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.931,
     lng: -75.1557,
     addedDate: "2026-03-19",
-    trendingScore: 90,
+    trendingScore: 85,
   },
   {
     id: "spot-14",
@@ -2249,7 +2336,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.95,
     lng: -75.163,
     addedDate: "2026-03-06",
-    trendingScore: 35,
+    trendingScore: 30,
   },
   {
     id: "spot-15",
@@ -2267,7 +2354,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.972,
     lng: -75.1368,
     addedDate: "2026-03-05",
-    trendingScore: 85,
+    trendingScore: 80,
   },
   {
     id: "spot-16",
@@ -2285,7 +2372,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.985,
     lng: -75.1248,
     addedDate: "2026-03-04",
-    trendingScore: 85,
+    trendingScore: 80,
   },
   {
     id: "spot-17",
@@ -2303,7 +2390,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.9742,
     lng: -75.1345,
     addedDate: "2026-03-11",
-    trendingScore: 85,
+    trendingScore: 80,
   },
   {
     id: "spot-18",
@@ -2321,7 +2408,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.944,
     lng: -75.1497,
     addedDate: "2026-03-10",
-    trendingScore: 85,
+    trendingScore: 80,
   },
   {
     id: "spot-19",
@@ -2339,7 +2426,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.968,
     lng: -75.1286,
     addedDate: "2026-03-09",
-    trendingScore: 35,
+    trendingScore: 30,
   },
   {
     id: "spot-20",
@@ -2357,7 +2444,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.9491,
     lng: -75.168,
     addedDate: "2026-03-08",
-    trendingScore: 35,
+    trendingScore: 30,
   },
   {
     id: "spot-21",
@@ -2375,7 +2462,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.974,
     lng: -75.134,
     addedDate: "2026-03-07",
-    trendingScore: 35,
+    trendingScore: 30,
   },
   {
     id: "spot-22",
@@ -2393,26 +2480,9 @@ export const hotspots: HotSpot[] = [
     lat: 39.9275,
     lng: -75.1584,
     addedDate: "2026-03-06",
-    trendingScore: 35,
+    trendingScore: 30,
   },
-  {
-    id: "spot-23",
-    name: "La Colombe Fishtown Flagship",
-    type: "cafe",
-    address: "1335 Frankford Avenue, Philadelphia, PA 19125",
-    neighborhood: "Fishtown",
-    description: "La Colombe\'s stunning flagship roastery in Fishtown is more than a coffee shop — it\'s a destination experience in a beautifully converted industrial building with a visible roastery, extensive menu, and the iconic draft latte on tap. One of the best coffee experiences in the city, in the heart of the neighborhood\'s most exciting stretch.",
-    vibeTag: "trendy",
-    priceRange: "$",
-    source: "marcodigabriele.com",
-    cuisine: "Specialty coffee",
-    isNew: false,
-    isInsider: false,
-    lat: 39.9717,
-    lng: -75.1358,
-    addedDate: "2026-03-05",
-    trendingScore: 35,
-  },
+  
   {
     id: "spot-24",
     name: "Kissho House Omakase",
@@ -2447,7 +2517,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.941,
     lng: -75.1548,
     addedDate: "2026-03-11",
-    trendingScore: 85,
+    trendingScore: 80,
   },
   {
     id: "spot-26",
@@ -2465,7 +2535,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.9305,
     lng: -75.1539,
     addedDate: "2026-03-10",
-    trendingScore: 85,
+    trendingScore: 80,
   },
   {
     id: "spot-27",
@@ -2483,7 +2553,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.9732,
     lng: -75.1356,
     addedDate: "2026-03-19",
-    trendingScore: 90,
+    trendingScore: 85,
   },
   {
     id: "spot-28",
@@ -2501,7 +2571,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.9499,
     lng: -75.144,
     addedDate: "2026-03-08",
-    trendingScore: 35,
+    trendingScore: 30,
   },
   {
     id: "spot-29",
@@ -2519,7 +2589,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.955,
     lng: -75.1568,
     addedDate: "2026-03-07",
-    trendingScore: 85,
+    trendingScore: 80,
   },
   {
     id: "spot-30",
@@ -2539,24 +2609,7 @@ export const hotspots: HotSpot[] = [
     addedDate: "2026-03-23",
     trendingScore: 70,
   },
-  {
-    id: "spot-31",
-    name: "Pizzeria Beddia",
-    type: "restaurant",
-    address: "1313 N. Lee Street, Philadelphia, PA 19125",
-    neighborhood: "Fishtown",
-    description: "After years as a bare-bones take-out operation with legendary lines down Frankford Avenue, Joe Beddia\'s pizza evolved into a full restaurant — now a Michelin Bib Gourmand. Thin, crispy-crust pies with seasonal toppings (spicy arrabbiata, white pies with greens, roasted potato or corn), natural wine, judión beans and burrata, and 1-900-ICE-CREAM soft serve. Pure joy in pizza form.",
-    vibeTag: "casual",
-    priceRange: "$$",
-    source: "Resy Hit List Feb 2026 / Michelin",
-    cuisine: "Pizza / Italian",
-    isNew: false,
-    isInsider: false,
-    lat: 39.973,
-    lng: -75.1322,
-    addedDate: "2026-03-05",
-    trendingScore: 35,
-  },
+  
   {
     id: "spot-32",
     name: "Southwark",
@@ -2573,7 +2626,7 @@ export const hotspots: HotSpot[] = [
     lat: 39.9404,
     lng: -75.1488,
     addedDate: "2026-03-04",
-    trendingScore: 85,
+    trendingScore: 80,
   },
   {
     id: "spot-33",
@@ -2609,7 +2662,7 @@ export const hotspots: HotSpot[] = [
     lng: -75.1465,
     source: "visitphilly.com",
     addedDate: "2026-03-19",
-    trendingScore: 70,
+    trendingScore: 65,
   },
   {
     id: "spot-35",
@@ -2627,7 +2680,7 @@ export const hotspots: HotSpot[] = [
     lng: -75.16,
     source: "vinepair.com / phillymag.com",
     addedDate: "2026-03-18",
-    trendingScore: 85,
+    trendingScore: 80,
   },
   {
     id: "spot-36",
@@ -2735,7 +2788,7 @@ export const hotspots: HotSpot[] = [
     lng: -75.1485,
     source: "visitphilly.com",
     addedDate: "2026-03-19",
-    trendingScore: 90,
+    trendingScore: 85,
   },
   {
     id: "spot-43",
@@ -2753,7 +2806,7 @@ export const hotspots: HotSpot[] = [
     lng: -75.1509,
     source: "visitphilly.com",
     addedDate: "2026-03-18",
-    trendingScore: 85,
+    trendingScore: 80,
   },
   {
     id: "spot-44",
@@ -2862,7 +2915,7 @@ export const hotspots: HotSpot[] = [
     lng: -75.171,
     source: "inquirer.com / eater.com",
     addedDate: "2026-03-19",
-    trendingScore: 90,
+    trendingScore: 85,
   },
   {
     id: "spot-53",
@@ -2880,7 +2933,7 @@ export const hotspots: HotSpot[] = [
     lng: -75.1335,
     source: "phillymag.com / inquirer.com",
     addedDate: "2026-03-18",
-    trendingScore: 65,
+    trendingScore: 60,
   },
   {
     id: "spot-54",
@@ -2989,7 +3042,7 @@ export const hotspots: HotSpot[] = [
     lng: -75.17,
     source: "philly.eater.com",
     addedDate: "2026-03-19",
-    trendingScore: 90,
+    trendingScore: 85,
   },
   {
     id: "spot-60",
@@ -3007,7 +3060,7 @@ export const hotspots: HotSpot[] = [
     lng: -75.15,
     source: "philly.eater.com",
     addedDate: "2026-03-18",
-    trendingScore: 85,
+    trendingScore: 80,
   },
   {
     id: "spot-61",
@@ -3116,7 +3169,7 @@ export const hotspots: HotSpot[] = [
     lng: -75.149,
     source: "inquirer.com",
     addedDate: "2026-03-19",
-    trendingScore: 70,
+    trendingScore: 65,
   },
   {
     id: "spot-67",
@@ -3134,7 +3187,7 @@ export const hotspots: HotSpot[] = [
     lng: -75.1688,
     source: "phillymag.com / seanelstone.com",
     addedDate: "2026-03-18",
-    trendingScore: 85,
+    trendingScore: 80,
   },
   {
     id: "spot-68",
@@ -3242,7 +3295,7 @@ export const hotspots: HotSpot[] = [
     lng: -75.138,
     source: "phillyprgirl.com / yelp.com",
     addedDate: "2026-03-19",
-    trendingScore: 90,
+    trendingScore: 85,
   },
   {
     id: "spot-74",
@@ -3260,7 +3313,7 @@ export const hotspots: HotSpot[] = [
     lng: -75.1652,
     source: "instagram.com / phillymag.com",
     addedDate: "2026-03-18",
-    trendingScore: 85,
+    trendingScore: 80,
   },
   {
     id: "spot-75",
@@ -3368,7 +3421,7 @@ export const hotspots: HotSpot[] = [
     lng: -75.1744,
     source: "Tasting Table / Visit Philly",
     addedDate: "2026-03-08",
-    trendingScore: 85,
+    trendingScore: 80,
   },
   {
     id: "spot-81",
@@ -3386,7 +3439,7 @@ export const hotspots: HotSpot[] = [
     lng: -75.0485,
     source: "visitphilly.com",
     addedDate: "2026-03-18",
-    trendingScore: 85,
+    trendingScore: 80,
   },
   {
     id: "spot-82",
@@ -3422,7 +3475,7 @@ export const hotspots: HotSpot[] = [
     lng: -75.1665,
     source: "theinfatuation.com",
     addedDate: "2026-03-05",
-    trendingScore: 85,
+    trendingScore: 80,
   },
   {
     id: "spot-84",
@@ -3531,6 +3584,60 @@ export const hotspots: HotSpot[] = [
     source: "theinfatuation.com",
     addedDate: "2026-03-26",
     trendingScore: 80,
+  },
+  {
+    id: "spot-90",
+    name: "48 Record Bar",
+    type: "Bar / Vinyl Lounge",
+    address: "48 S 2nd St, Philadelphia, PA 19106",
+    neighborhood: "Old City",
+    description: "A vinyl-forward cocktail bar in Old City where the turntable is always spinning. Craft cocktails, rotating DJ nights, and a curated record collection for sale. The perfect late-night haunt for music heads.",
+    vibeTag: "underground",
+    priceRange: "$$",
+    cuisine: null,
+    isNew: true,
+    isInsider: true,
+    lat: 39.9489,
+    lng: -75.1456,
+    source: "theinfatuation.com",
+    addedDate: "2026-03-27",
+    trendingScore: 80,
+  },
+  {
+    id: "spot-91",
+    name: "Manna Bakery Kensington",
+    type: "Bakery / Cafe",
+    address: "Kensington, Philadelphia, PA",
+    neighborhood: "Kensington",
+    description: "Farmers-market favorite Manna Bakery takes over the shuttered Essen\'s space in Kensington, bringing their beloved sourdough, pastries, and breakfast sandwiches to a permanent brick-and-mortar. A neighborhood game-changer.",
+    vibeTag: "local-favorite",
+    priceRange: "$",
+    cuisine: "Bakery",
+    isNew: true,
+    isInsider: true,
+    lat: 39.978,
+    lng: -75.134,
+    source: "inquirer.com",
+    addedDate: "2026-03-27",
+    trendingScore: 80,
+  },
+  {
+    id: "spot-92",
+    name: "Jaffa Bar",
+    type: "Bar",
+    address: "1625 N Howard St, Philadelphia, PA 19122",
+    neighborhood: "Fishtown",
+    description: "A Middle Eastern-influenced cocktail bar in Fishtown with inventive drinks, small plates, and a moody, intimate atmosphere. Think arak-based cocktails, hummus with lamb, and late-night DJ sets on weekends.",
+    vibeTag: "underground",
+    priceRange: "$$",
+    cuisine: "Middle Eastern",
+    isNew: true,
+    isInsider: true,
+    lat: 39.9752,
+    lng: -75.1352,
+    source: "theinfatuation.com",
+    addedDate: "2026-03-27",
+    trendingScore: 80,
   }
 ];
 
@@ -3550,6 +3657,13 @@ export const influencers: Influencer[] = [
       Twitter: "https://x.com/Wooderice215",
     },
     recentPicks: [
+      {
+        name: "Cherry Blossom Festival Preview",
+        type: "event",
+        neighborhood: "Fairmount Park",
+        quote: "Sakura Weekend is here -- the Cherry Blossom Festival hits Fairmount Park March 28-29. 100 years of cherry trees, live performances, food, and beer gardens. Early bird tickets end today, don\'t sleep.",
+        date: "2026-03-27",
+      },
       {
         name: "Wooder Ice x Philly 250",
         type: "culture",
@@ -3657,6 +3771,13 @@ export const influencers: Influencer[] = [
     },
     recentPicks: [
       {
+        name: "Manayunk StrEAT Food Festival 2026",
+        type: "event",
+        neighborhood: "Manayunk",
+        quote: "StrEAT Food Festival is back April 19 and it\'s bigger than ever -- 85+ food trucks on Main Street Manayunk. New family area this year too. Mark your calendars, this is the one.",
+        date: "2026-03-27",
+      },
+      {
         name: "Mi Vida Center City Tour",
         type: "restaurant",
         neighborhood: "Center City",
@@ -3738,6 +3859,13 @@ export const influencers: Influencer[] = [
     },
     recentPicks: [
       {
+        name: "Banshee Late Night Bites",
+        type: "restaurant",
+        neighborhood: "South Street",
+        quote: "Late night at Banshee is elite. The euro-fusion small plates hit different after 10pm -- grilled Kyoto carrot, Barnstable oysters, and the Tropical Contact High cocktail. South Street has a new king.",
+        date: "2026-03-27",
+      },
+      {
         name: "Piccolina Old City Date Night",
         type: "restaurant",
         neighborhood: "Old City",
@@ -3803,6 +3931,13 @@ export const influencers: Influencer[] = [
       TikTok: "https://www.tiktok.com/@josheatsphilly",
     },
     recentPicks: [
+      {
+        name: "Emilia Fishtown Pasta Night",
+        type: "restaurant",
+        neighborhood: "Fishtown",
+        quote: "Emilia in Fishtown from Greg Vernick is exactly what Frankford Ave needed. Fresh pasta, killer sauces, and that Vernick attention to detail. The cacio e pepe is already in my top 5.",
+        date: "2026-03-27",
+      },
       {
         name: "Side Eye Restaurant Review",
         type: "restaurant",
@@ -3904,6 +4039,13 @@ export const influencers: Influencer[] = [
     },
     recentPicks: [
       {
+        name: "Cherry Blossom Sakura Weekend",
+        type: "event",
+        neighborhood: "Fairmount Park",
+        quote: "Sakura Weekend tomorrow and Sunday! Tea ceremonies, taiko drumming, cosplay fashion show, and the cherry trees are at peak bloom. Fairmount Park is going to be gorgeous.",
+        date: "2026-03-27",
+      },
+      {
         name: "PHS Pop-Up Garden Manayunk Opening",
         type: "event",
         neighborhood: "Manayunk",
@@ -3977,6 +4119,13 @@ export const influencers: Influencer[] = [
       Facebook: "https://www.facebook.com/phillyfoodladies",
     },
     recentPicks: [
+      {
+        name: "New Food Hall at 3025",
+        type: "food-hall",
+        neighborhood: "University City",
+        quote: "New food hall alert at 3025 in University City -- multiple vendors, diverse cuisines, and a great casual hangout spot. Perfect for lunch runs or a quick dinner before a show.",
+        date: "2026-03-27",
+      },
       {
         name: "Casa Oui Brunch Spot",
         type: "restaurant",
@@ -4055,6 +4204,13 @@ export const influencers: Influencer[] = [
     },
     recentPicks: [
       {
+        name: "Adda Kensington Opening",
+        type: "restaurant",
+        neighborhood: "Kensington",
+        quote: "Adda from Unapologetic Foods just opened on Frankford Ave and it\'s the real deal Indian food. The NYC team behind Michelin-starred Semma brought that same energy to Kensington. Go now before the wait gets crazy.",
+        date: "2026-03-27",
+      },
+      {
         name: "Pine Street Grill First Look",
         type: "restaurant",
         neighborhood: "Fitler Square",
@@ -4116,6 +4272,13 @@ export const influencers: Influencer[] = [
       TikTok: "https://www.tiktok.com/@koryaversa",
     },
     recentPicks: [
+      {
+        name: "StrEAT Food Festival Planning",
+        type: "event",
+        neighborhood: "Manayunk",
+        quote: "Philly\'s biggest food festival is back! StrEAT Food takes over historic Main Street on Sunday, April 19. 70+ of the region\'s best food trucks. Save the date and come hungry.",
+        date: "2026-03-26",
+      },
       {
         name: "R&B Only Live at The Fillmore",
         type: "event",
@@ -4187,6 +4350,13 @@ export const influencers: Influencer[] = [
       TikTok: "https://www.tiktok.com/@djour.philly",
     },
     recentPicks: [
+      {
+        name: "Drain at Union Transfer Tonight",
+        type: "event",
+        neighborhood: "Spring Garden",
+        quote: "Drain is hitting Union Transfer tonight with No Pressure, Haywire, and Secret World. Hardcore energy at its finest. If you know, you know -- this one is going to be wild.",
+        date: "2026-03-27",
+      },
       {
         name: "Southeast Asian Market Opening",
         type: "event",
@@ -4261,6 +4431,13 @@ export const influencers: Influencer[] = [
       Instagram: "https://www.instagram.com/swagfoodphilly",
     },
     recentPicks: [
+      {
+        name: "Side Eye Queen Village Weekend Visit",
+        type: "restaurant",
+        neighborhood: "Queen Village",
+        quote: "Weekend brunch energy at Side Eye in Queen Village. The Philly French bistro vibes are perfect -- housemade breads, pastries, and that green peppercorn brioche burger with Camembert. Neighborhood gem.",
+        date: "2026-03-27",
+      },
       {
         name: "Banshee on South Street",
         type: "restaurant",
