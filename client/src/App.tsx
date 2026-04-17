@@ -13,6 +13,7 @@ import { InfluencersPage } from "@/pages/InfluencersPage";
 import { PerplexityAttribution } from "@/components/PerplexityAttribution";
 import { BottomNav } from "@/components/BottomNav";
 import NotFound from "@/pages/not-found";
+import { Analytics } from "@vercel/analytics/react";
 
 function AppRouter() {
   return (
@@ -49,6 +50,7 @@ function App() {
             </footer>
           </div>
         </Router>
+        <Analytics />
       </TooltipProvider>
     </QueryClientProvider>
   );
